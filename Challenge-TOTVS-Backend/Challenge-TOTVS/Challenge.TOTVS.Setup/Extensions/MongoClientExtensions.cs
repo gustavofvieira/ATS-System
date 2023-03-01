@@ -28,7 +28,7 @@ namespace Challenge.TOTVS.Setup.Extensions
             return services
                  .AddScoped(sp =>
                     new ATSContext(
-                        sp.GetRequiredService<MongoClient>().GetDatabase(config.GetConnectionString("DesafioBTGDatabase"))
+                        sp.GetRequiredService<MongoClient>().GetDatabase(config.GetConnectionString("ChallengeATS"))
                     )
                 );
         }

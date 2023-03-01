@@ -233,6 +233,9 @@
         }
       },
       "Challenge.TOTVS.Domain/1.0.0": {
+        "dependencies": {
+          "MongoDB.Bson": "2.19.0"
+        },
         "runtime": {
           "Challenge.TOTVS.Domain.dll": {}
         }

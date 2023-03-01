@@ -1,6 +1,9 @@
-﻿namespace Challenge.TOTVS.Domain.Interfaces.Repositories
+﻿using Challenge.TOTVS.Domain.Interfaces.Services;
+using Challenge.TOTVS.Domain.Models;
+
+namespace Challenge.TOTVS.Domain.Interfaces.Repositories
 {
-    public interface IJobVacancyRepository
+    public interface IJobVacancyRepository : IBaseService<JobVacancy>
     {
     }
 }

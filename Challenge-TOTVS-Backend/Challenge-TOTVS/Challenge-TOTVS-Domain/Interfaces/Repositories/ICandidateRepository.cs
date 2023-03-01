@@ -1,8 +1,9 @@
-﻿using Challenge.TOTVS.Domain.Models;
+﻿using Challenge.TOTVS.Domain.Interfaces.Services;
+using Challenge.TOTVS.Domain.Models;
 
 namespace Challenge.TOTVS.Domain.Interfaces.Repositories
 {
-    public interface ICandidateRepository : IBaseRepository<Candidate>
+    public interface ICandidateRepository : IBaseService<Candidate>
     {
     }
 }

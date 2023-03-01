@@ -12,14 +12,10 @@ namespace Challenge.TOTVS.Setup
 
         public IConfiguration Configuration { get; }
 
-        //public void Configure()
-        //{
-
-        //}
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddServices(Configuration);
-            services.AddRepositories(Configuration);
+            services.AddServices();
+            services.AddRepositories();
             services
                 .AddMongoClientConfiguration(Configuration)
                 .AddATSContext(Configuration);

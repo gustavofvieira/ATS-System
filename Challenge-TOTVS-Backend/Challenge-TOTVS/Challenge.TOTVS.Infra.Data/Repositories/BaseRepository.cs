@@ -1,8 +1,9 @@
 ﻿using Challenge.TOTVS.Domain.Interfaces.Repositories;
+using Challenge.TOTVS.Domain.Interfaces.Services;
 
 namespace Challenge.TOTVS.Infra.Data.Repositories
 {
-    internal class BaseRepository<TEntity> : IBaseRepository<TEntity> where TEntity : class
+    public class BaseRepository<TEntity> : IBaseService<TEntity> where TEntity : class
     {
         public Task Add(TEntity obj)
         {

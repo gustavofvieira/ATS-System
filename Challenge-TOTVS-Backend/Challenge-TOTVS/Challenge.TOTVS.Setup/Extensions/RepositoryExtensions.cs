@@ -7,7 +7,7 @@ namespace Challenge.TOTVS.Setup.Extensions
 {
     public static class RepositoryExtensions
     {
-        public static IServiceCollection AddRepositories(this IServiceCollection services, IConfiguration config)
+        public static IServiceCollection AddRepositories(this IServiceCollection services)
         {
             return services
                 .AddScoped<IJobVacancyRepository, JobVacancyRepository>()
