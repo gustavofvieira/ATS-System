@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "gZs74OHm6pmBib0VkSWVkZpEEi3i9ELhz6sF5IotXHtkCzt7thbUMnk0WE4CUaZY0j7g4YSpqqVt5CtCh3FYLw==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\gusta\\Documents\\Provas - Candidaturas\\Totvs\\Challenge-TOTVS\\Challenge-TOTVS-Backend\\Challenge-TOTVS\\Challenge-TOTVS-Services\\Challenge.TOTVS.Services.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\gusta\\.nuget\\packages\\mongodb.bson\\2.19.0\\mongodb.bson.2.19.0.nupkg.sha512",
+    "C:\\Users\\gusta\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\5.0.0\\system.runtime.compilerservices.unsafe.5.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}
