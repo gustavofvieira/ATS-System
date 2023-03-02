@@ -3,7 +3,7 @@ using Challenge.TOTVS.Domain.Models;
 
 namespace Challenge.TOTVS.Domain.Interfaces.Repositories
 {
-    public interface IJobVacancyRepository : IBaseService<JobVacancy>
+    public interface IJobVacancyRepository : IBaseRepository<JobVacancy>
     {
     }
 }

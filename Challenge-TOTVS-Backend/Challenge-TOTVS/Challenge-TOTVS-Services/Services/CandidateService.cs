@@ -11,9 +11,9 @@ namespace Challenge.TOTVS.Services.Services
         public CandidateService(ICandidateRepository candidateRepository) =>
         _candidateRepository = candidateRepository;
 
-        public async Task Add(Candidate obj)
+        public async Task Add(Candidate candidate)
         {
-            await _candidateRepository.Add(obj);
+            await _candidateRepository.Add(candidate);
         }
 
         public IEnumerable<Candidate> GetAll()

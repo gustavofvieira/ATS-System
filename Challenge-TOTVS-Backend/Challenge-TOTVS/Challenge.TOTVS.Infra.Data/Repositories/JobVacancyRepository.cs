@@ -1,5 +1,6 @@
 ﻿using Challenge.TOTVS.Domain.Interfaces.Repositories;
 using Challenge.TOTVS.Domain.Models;
+using Challenge.TOTVS.Infra.Data.Context;
 using System.Diagnostics.CodeAnalysis;
 
 namespace Challenge.TOTVS.Infra.Data.Repositories
@@ -7,9 +8,13 @@ namespace Challenge.TOTVS.Infra.Data.Repositories
     [ExcludeFromCodeCoverage]
     public class JobVacancyRepository : IJobVacancyRepository
     {
-        public Task Add(JobVacancy obj)
+        private readonly ATSContext _context;
+        public JobVacancyRepository(
+            ATSContext context) =>
+            _context = context;
+        public async Task Add(JobVacancy jobVacancy)
         {
-            throw new NotImplementedException();
+            await _context.JobVacancy.InsertOneAsync(jobVacancy);
         }
 
         public IEnumerable<JobVacancy> GetAll()
