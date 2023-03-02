@@ -1,6 +1,7 @@
 ﻿using Challenge.TOTVS.Domain.Interfaces.Repositories;
 using Challenge.TOTVS.Domain.Models;
 using Challenge.TOTVS.Infra.Data.Context;
+using MongoDB.Driver;
 using System.Diagnostics.CodeAnalysis;
 
 namespace Challenge.TOTVS.Infra.Data.Repositories
@@ -12,15 +13,12 @@ namespace Challenge.TOTVS.Infra.Data.Repositories
         public JobVacancyRepository(
             ATSContext context) =>
             _context = context;
-        public async Task Add(JobVacancy jobVacancy)
-        {
+        public async Task Add(JobVacancy jobVacancy) =>        
             await _context.JobVacancy.InsertOneAsync(jobVacancy);
-        }
+        
 
-        public IEnumerable<JobVacancy> GetAll()
-        {
-            throw new NotImplementedException();
-        }
+        public async Task<IEnumerable<JobVacancy>> GetAll()  =>
+            await _context.JobVacancy.AsQueryable().ToListAsync();
 
         public JobVacancy GetById(int id)
         {

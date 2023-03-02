@@ -4,7 +4,7 @@
     {
         Task Add(TEntity obj);
         TEntity GetById(int id);
-        IEnumerable<TEntity> GetAll();
+        Task<IEnumerable<TEntity>> GetAll();
         Task Update(TEntity obj);
         Task Remove(TEntity obj);
     }

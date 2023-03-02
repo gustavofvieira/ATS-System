@@ -10,7 +10,7 @@ namespace Challenge.TOTVS.Services.Services
             throw new NotImplementedException();
         }
 
-        public IEnumerable<JobApplication> GetAll()
+        public Task<IEnumerable<JobApplication>> GetAll()
         {
             throw new NotImplementedException();
         }

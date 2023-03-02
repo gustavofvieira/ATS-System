@@ -27,6 +27,15 @@ namespace Challenge.TOTVS.WebApp.Controllers
             return "value";
         }
 
+        [HttpGet]
+        [Route("getAllJobVacancy")]
+        public async Task<IActionResult> GetAll()
+        {
+
+            var totalOrders = await _jobVacancyService.GetAll();
+            return Ok(totalOrders);
+        }
+
         // POST api/<VacancyController>
         [HttpPost]
         public async Task Post(JobVacancy value)

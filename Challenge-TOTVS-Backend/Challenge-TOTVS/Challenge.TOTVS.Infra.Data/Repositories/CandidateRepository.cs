@@ -17,7 +17,7 @@ namespace Challenge.TOTVS.Infra.Data.Repositories
 
         public async Task Add(Candidate candidate) => await _context.Candidate.InsertOneAsync(candidate);
   
-        public IEnumerable<Candidate> GetAll()
+        public Task<IEnumerable<Candidate>> GetAll()
         {
             throw new NotImplementedException();
         }

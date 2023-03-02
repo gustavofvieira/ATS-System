@@ -16,7 +16,7 @@ namespace Challenge.TOTVS.Services.Services
             await _candidateRepository.Add(candidate);
         }
 
-        public IEnumerable<Candidate> GetAll()
+        public Task<IEnumerable<Candidate>> GetAll()
         {
             throw new NotImplementedException();
         }

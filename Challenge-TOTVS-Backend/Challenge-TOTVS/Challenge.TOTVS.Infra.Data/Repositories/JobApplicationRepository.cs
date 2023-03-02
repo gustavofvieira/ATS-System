@@ -7,12 +7,14 @@ namespace Challenge.TOTVS.Infra.Data.Repositories
     [ExcludeFromCodeCoverage]
     public class JobApplicationRepository : IJobApplicationRepository
     {
+
+
         public Task Add(JobApplication obj)
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<JobApplication> GetAll()
+        public async Task<IEnumerable<JobApplication>> GetAll()
         {
             throw new NotImplementedException();
         }

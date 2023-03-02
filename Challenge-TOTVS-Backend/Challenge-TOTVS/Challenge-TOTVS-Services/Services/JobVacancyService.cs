@@ -17,10 +17,7 @@ namespace Challenge.TOTVS.Services.Services
            await _jobVacancyRepository.Add(jobVacancy);
         }
 
-        public IEnumerable<JobVacancy> GetAll()
-        {
-            throw new NotImplementedException();
-        }
+        public async Task<IEnumerable<JobVacancy>> GetAll() => await _jobVacancyRepository.GetAll();
 
         public JobVacancy GetById(int id)
         {
