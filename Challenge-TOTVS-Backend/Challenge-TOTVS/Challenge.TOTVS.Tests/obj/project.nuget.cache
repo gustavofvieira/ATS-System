@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "w6qw47xRWioWpzS2QkPUwtwtLZsJQb4QvCfdt/0g36WMqC0gEPpNfnO4LzMUGVVSLq3ldo2d99+r5sIxXpiZWw==",
+  "dgSpecHash": "VKlxB8mvfB6q7qqKl8/9iNk8ySJc1LH9cWTSX4GUC/WDMkM3BKoqxe0NcKzpIBLrFP52XhWlDwXLT20ATUYdpA==",
   "success": true,
   "projectFilePath": "C:\\Users\\gusta\\Documents\\Provas - Candidaturas\\Totvs\\Challenge-TOTVS\\Challenge-TOTVS-Backend\\Challenge-TOTVS\\Challenge.TOTVS.Tests\\Challenge.TOTVS.Tests.csproj",
   "expectedPackageFiles": [
@@ -32,6 +32,8 @@
     "C:\\Users\\gusta\\.nuget\\packages\\newtonsoft.json\\9.0.1\\newtonsoft.json.9.0.1.nupkg.sha512",
     "C:\\Users\\gusta\\.nuget\\packages\\nuget.frameworks\\5.11.0\\nuget.frameworks.5.11.0.nupkg.sha512",
     "C:\\Users\\gusta\\.nuget\\packages\\nunit\\3.13.3\\nunit.3.13.3.nupkg.sha512",
+    "C:\\Users\\gusta\\.nuget\\packages\\nunit.consolerunner\\3.16.3\\nunit.consolerunner.3.16.3.nupkg.sha512",
+    "C:\\Users\\gusta\\.nuget\\packages\\nunit3testadapter\\4.4.2\\nunit3testadapter.4.4.2.nupkg.sha512",
     "C:\\Users\\gusta\\.nuget\\packages\\sharpcompress\\0.30.1\\sharpcompress.0.30.1.nupkg.sha512",
     "C:\\Users\\gusta\\.nuget\\packages\\snappier\\1.0.0\\snappier.1.0.0.nupkg.sha512",
     "C:\\Users\\gusta\\.nuget\\packages\\system.buffers\\4.5.1\\system.buffers.4.5.1.nupkg.sha512",

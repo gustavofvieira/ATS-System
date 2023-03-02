@@ -1,10 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "Z5aat1SPsbgpQcF7LKo2+QYbQf5lGbDosh7og2lQAEh4m2Q0yI2yPrN4d+vA5sH5sDV2llsCHn4k02LaIjeTLA==",
+  "dgSpecHash": "mImhoHKJ+9ckwIdqHcVve48K+ixopPDqLSksRvMzBZPIrrduGjO8V/rSNJ0q1BfL0MuwUu4eJ21YOyOYhNgEsg==",
   "success": true,
   "projectFilePath": "C:\\Users\\gusta\\Documents\\Provas - Candidaturas\\Totvs\\Challenge-TOTVS\\Challenge-TOTVS-Backend\\Challenge-TOTVS\\Challenge-TOTVS-Services\\Challenge.TOTVS.Services.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\gusta\\.nuget\\packages\\microsoft.aspnetcore.http.features\\5.0.17\\microsoft.aspnetcore.http.features.5.0.17.nupkg.sha512",
+    "C:\\Users\\gusta\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\2.0.0\\microsoft.extensions.logging.abstractions.2.0.0.nupkg.sha512",
     "C:\\Users\\gusta\\.nuget\\packages\\microsoft.extensions.primitives\\5.0.1\\microsoft.extensions.primitives.5.0.1.nupkg.sha512",
     "C:\\Users\\gusta\\.nuget\\packages\\mongodb.bson\\2.19.0\\mongodb.bson.2.19.0.nupkg.sha512",
     "C:\\Users\\gusta\\.nuget\\packages\\system.io.pipelines\\5.0.2\\system.io.pipelines.5.0.2.nupkg.sha512",

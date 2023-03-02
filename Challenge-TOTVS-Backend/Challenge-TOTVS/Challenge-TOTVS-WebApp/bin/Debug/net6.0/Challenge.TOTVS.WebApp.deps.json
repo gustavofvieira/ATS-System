@@ -259,7 +259,8 @@
       },
       "Challenge.TOTVS.Services/1.0.0": {
         "dependencies": {
-          "Challenge.TOTVS.Domain": "1.0.0"
+          "Challenge.TOTVS.Domain": "1.0.0",
+          "Microsoft.Extensions.Logging.Abstractions": "2.0.0"
         },
         "runtime": {
           "Challenge.TOTVS.Services.dll": {}

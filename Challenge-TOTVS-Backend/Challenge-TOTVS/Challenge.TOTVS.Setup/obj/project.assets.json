@@ -402,7 +402,8 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
-          "Challenge.TOTVS.Domain": "1.0.0"
+          "Challenge.TOTVS.Domain": "1.0.0",
+          "Microsoft.Extensions.Logging.Abstractions": "2.0.0"
         },
         "compile": {
           "bin/placeholder/Challenge.TOTVS.Services.dll": {}
