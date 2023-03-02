@@ -13,7 +13,7 @@ namespace Challenge.TOTVS.WebApp.Controllers
     {
         private readonly ICandidateService _candidateService;
 
-        public CandidateController(CandidateService candidateService)
+        public CandidateController(ICandidateService candidateService)
         {
             _candidateService = candidateService;
         }
@@ -33,9 +33,9 @@ namespace Challenge.TOTVS.WebApp.Controllers
             return "value";
         }
 
-        // POST api/<CandidateController>
+        //POST api/<CandidateController>
         //[HttpPost]
-        //public void Post([FromBody] string value)
+        //public void Post(Candidate candidate)
         //{
 
         //}
@@ -44,7 +44,7 @@ namespace Challenge.TOTVS.WebApp.Controllers
         [HttpPost]
         public async Task Post(Candidate candidate)
         {
-           await _candidateService.Add(candidate);
+            await _candidateService.Add(candidate);
         }
 
         // PUT api/<CandidateController>/5

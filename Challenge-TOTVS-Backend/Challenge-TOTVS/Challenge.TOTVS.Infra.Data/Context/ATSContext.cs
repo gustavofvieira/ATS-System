@@ -12,5 +12,6 @@ namespace Challenge.TOTVS.Infra.Data.Context
         public IMongoCollection<JobVacancy> JobVacancy => Database.GetCollection<JobVacancy>("JobVacancy");
         public IMongoCollection<Candidate> Candidate => Database.GetCollection<Candidate>("Candidate");
         public IMongoCollection<JobApplication> JobApplication => Database.GetCollection<JobApplication>("JobApplication");
+
     }
 }

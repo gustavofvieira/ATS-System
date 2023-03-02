@@ -5,9 +5,16 @@ namespace Challenge.TOTVS.Services.Services
 {
     public class BaseService<TEntity> : IBaseService<TEntity> where TEntity : class
     {
-        public Task Add(TEntity obj)
+        private readonly IBaseRepository<TEntity> _repository;
+
+
+        public BaseService(IBaseRepository<TEntity> repository)
         {
-            throw new NotImplementedException();
+            _repository = repository;
+        }
+        public async Task Add(TEntity obj)
+        {
+            await _repository.Add(obj);
         }
 
         public IEnumerable<TEntity> GetAll()

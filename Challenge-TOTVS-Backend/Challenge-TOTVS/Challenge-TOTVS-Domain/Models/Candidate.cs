@@ -6,10 +6,10 @@ namespace Challenge.TOTVS.Domain.Models
 {
     public class Candidate
     {
-        [BsonId]
-        [BsonRepresentation(BsonType.ObjectId)]
-        [JsonIgnore]
-        public string _id { get; set; } = default!;
+        //[BsonId]
+        //[BsonRepresentation(BsonType.ObjectId)]
+        //[JsonIgnore]
+        //public string _id { get; set; } = default!;
 
         [BsonElement("Name")]
         [JsonPropertyName("Nome")]
