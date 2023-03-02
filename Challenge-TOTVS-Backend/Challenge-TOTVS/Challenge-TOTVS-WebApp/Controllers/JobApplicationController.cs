@@ -1,7 +1,4 @@
-﻿using Challenge.TOTVS.Domain.Interfaces.Services;
-using Challenge.TOTVS.Domain.Models;
-using Challenge.TOTVS.Services.Services;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -9,24 +6,15 @@ namespace Challenge.TOTVS.WebApp.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CandidateController : ControllerBase
+    public class JobApplicationController : ControllerBase
     {
-        private readonly ICandidateService _candidateService;
-
-        public CandidateController(ICandidateService candidateService)
-        {
-            _candidateService = candidateService;
-        }
-
-
-        // GET: api/<CandidateController>
+        // GET: api/<JobApplicationController>
         [HttpGet]
         public IEnumerable<string> Get()
         {
             return new string[] { "value1", "value2" };
         }
 
-        //Associar o arquivo ao collection Candidate
         [HttpPost("UploadCVFile")]
         public IActionResult UploadCVFile(IFormFile formFile)
         {
@@ -34,34 +22,27 @@ namespace Challenge.TOTVS.WebApp.Controllers
             return Ok(formFile.FileName);
         }
 
-        // GET api/<CandidateController>/5
+
+        // GET api/<JobApplicationController>/5
         [HttpGet("{id}")]
         public string Get(int id)
         {
             return "value";
         }
 
-        //POST api/<CandidateController>
-        //[HttpPost]
-        //public void Post(Candidate candidate)
-        //{
-
-        //}
-
-        // POST api/<CandidateController>
+        // POST api/<JobApplicationController>
         [HttpPost]
-        public async Task Post(Candidate candidate)
+        public void Post([FromBody] string value)
         {
-            await _candidateService.Add(candidate);
         }
 
-        // PUT api/<CandidateController>/5
+        // PUT api/<JobApplicationController>/5
         [HttpPut("{id}")]
         public void Put(int id, [FromBody] string value)
         {
         }
 
-        // DELETE api/<CandidateController>/5
+        // DELETE api/<JobApplicationController>/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
