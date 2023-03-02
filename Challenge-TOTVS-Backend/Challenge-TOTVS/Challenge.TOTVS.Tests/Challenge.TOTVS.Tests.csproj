@@ -9,7 +9,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoFixture" Version="4.18.0" />
+    <PackageReference Include="FluentAssertions" Version="6.10.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.1.0" />
+    <PackageReference Include="Moq" Version="4.18.4" />
+    <PackageReference Include="NUnit" Version="3.13.3" />
     <PackageReference Include="xunit" Version="2.4.1" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.4.3">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -19,6 +23,12 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Challenge-TOTVS-Domain\Challenge.TOTVS.Domain.csproj" />
+    <ProjectReference Include="..\Challenge-TOTVS-Services\Challenge.TOTVS.Services.csproj" />
+    <ProjectReference Include="..\Challenge.TOTVS.Infra.Data\Challenge.TOTVS.Infra.Data.csproj" />
   </ItemGroup>
 
 </Project>
