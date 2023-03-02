@@ -1,6 +1,5 @@
 ﻿using Challenge.TOTVS.Domain.Interfaces.Services;
 using Challenge.TOTVS.Domain.Models;
-using Challenge.TOTVS.Services.Services;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
