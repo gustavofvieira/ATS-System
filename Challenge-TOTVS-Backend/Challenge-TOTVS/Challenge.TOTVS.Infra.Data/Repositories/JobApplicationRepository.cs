@@ -1,5 +1,8 @@
 ﻿using Challenge.TOTVS.Domain.Interfaces.Repositories;
 using Challenge.TOTVS.Domain.Models;
+using Challenge.TOTVS.Infra.Data.Context;
+using MongoDB.Driver;
+using MongoDB.Driver.Linq;
 using System.Diagnostics.CodeAnalysis;
 
 namespace Challenge.TOTVS.Infra.Data.Repositories
@@ -7,31 +10,26 @@ namespace Challenge.TOTVS.Infra.Data.Repositories
     [ExcludeFromCodeCoverage]
     public class JobApplicationRepository : IJobApplicationRepository
     {
+        private readonly ATSContext _context;
+        public JobApplicationRepository(
+            ATSContext context) =>
+            _context = context;
 
+        public async Task Add(JobApplication jobApplication) => await _context.JobApplication.InsertOneAsync(jobApplication);
 
-        public Task Add(JobApplication obj)
-        {
-            throw new NotImplementedException();
-        }
+        public async Task<List<JobApplication>> GetAll() => await _context.JobApplication.AsQueryable().ToListAsync();
 
-        public async Task<IEnumerable<JobApplication>> GetAll()
-        {
-            throw new NotImplementedException();
-        }
+        public async Task<JobApplication> GetById(Guid id) => await _context.JobApplication.AsQueryable().Where(c => c.JobApplicationId == id).FirstOrDefaultAsync();
 
-        public Task<JobApplication> GetById(string id)
-        {
-            throw new NotImplementedException();
-        }
+        public async Task Remove(Guid id) =>
+            await _context
+            .JobApplication
+            .DeleteOneAsync(c => c.JobApplicationId == id);
 
-        public Task Remove(JobApplication obj)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task Update(JobApplication obj)
-        {
-            throw new NotImplementedException();
-        }
+        public async Task Update(JobApplication jobApplication) =>
+            await _context
+            .JobApplication
+            .UpdateOneAsync(c => c.JobApplicationId == jobApplication.JobApplicationId,
+                Builders<JobApplication>.Update.Set(j => j, jobApplication));
     }
 }

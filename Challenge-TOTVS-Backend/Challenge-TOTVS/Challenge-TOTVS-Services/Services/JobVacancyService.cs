@@ -12,23 +12,14 @@ namespace Challenge.TOTVS.Services.Services
         public JobVacancyService(IJobVacancyRepository jobVacancyRepository) =>
         _jobVacancyRepository = jobVacancyRepository;
 
-        public async Task Add(JobVacancy jobVacancy)
-        {
-           await _jobVacancyRepository.Add(jobVacancy);
-        }
+        public async Task Add(JobVacancy jobVacancy) => await _jobVacancyRepository.Add(jobVacancy);
+        
+        public async Task<List<JobVacancy>> GetAll() => await _jobVacancyRepository.GetAll();
 
-        public async Task<IEnumerable<JobVacancy>> GetAll() => await _jobVacancyRepository.GetAll();
+        public async Task<JobVacancy> GetById(Guid id) => await _jobVacancyRepository.GetById(id);
 
-        public async Task<JobVacancy> GetById(string id) => await _jobVacancyRepository.GetById(id);
+        public async Task Remove(Guid id) => await _jobVacancyRepository.Remove(id);
 
-        public Task Remove(JobVacancy obj)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task Update(JobVacancy obj)
-        {
-            throw new NotImplementedException();
-        }
+        public async Task Update(JobVacancy jobVacancy) => await _jobVacancyRepository.Update(jobVacancy);
     }
 }

@@ -2,6 +2,7 @@
 using Challenge.TOTVS.Domain.Models;
 using Challenge.TOTVS.Infra.Data.Context;
 using MongoDB.Driver;
+using MongoDB.Driver.Linq;
 using System.Diagnostics.CodeAnalysis;
 
 namespace Challenge.TOTVS.Infra.Data.Repositories
@@ -13,26 +14,22 @@ namespace Challenge.TOTVS.Infra.Data.Repositories
         public JobVacancyRepository(
             ATSContext context) =>
             _context = context;
+
         public async Task Add(JobVacancy jobVacancy) =>        
             await _context.JobVacancy.InsertOneAsync(jobVacancy);
         
 
-        public async Task<IEnumerable<JobVacancy>> GetAll()  =>
+        public async Task<List<JobVacancy>> GetAll()  =>
             await _context.JobVacancy.AsQueryable().ToListAsync();
 
-        public Task<JobVacancy> GetById(string id)
-        {
-            throw new NotImplementedException();
-        }
+        public async Task<JobVacancy> GetById(Guid id) => await _context.JobVacancy.AsQueryable().Where(c => c.JobVacancyId == id).FirstOrDefaultAsync();
 
-        public Task Remove(JobVacancy obj)
-        {
-            throw new NotImplementedException();
-        }
+        public async Task Remove(Guid id) => await _context.JobVacancy.DeleteOneAsync(id.ToString());
 
-        public Task Update(JobVacancy obj)
-        {
-            throw new NotImplementedException();
-        }
+        public async Task Update(JobVacancy jobVacancy) =>
+            await _context
+            .JobVacancy
+            .UpdateOneAsync(c => c.JobVacancyId == jobVacancy.JobVacancyId,
+                Builders<JobVacancy>.Update.Set(j => j, jobVacancy));
     }
 }

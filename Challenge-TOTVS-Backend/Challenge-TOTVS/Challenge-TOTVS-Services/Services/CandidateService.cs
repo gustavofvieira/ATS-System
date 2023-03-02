@@ -1,6 +1,7 @@
 ﻿using Challenge.TOTVS.Domain.Interfaces.Repositories;
 using Challenge.TOTVS.Domain.Interfaces.Services;
 using Challenge.TOTVS.Domain.Models;
+using Microsoft.AspNetCore.Http;
 
 namespace Challenge.TOTVS.Services.Services
 {
@@ -11,29 +12,19 @@ namespace Challenge.TOTVS.Services.Services
         public CandidateService(ICandidateRepository candidateRepository) =>
         _candidateRepository = candidateRepository;
 
-        public async Task Add(Candidate candidate)
-        {
-            await _candidateRepository.Add(candidate);
-        }
-
-        public Task<IEnumerable<Candidate>> GetAll()
+        public void UploadCVFile(IFormFile formFile)
         {
             throw new NotImplementedException();
         }
 
-        public Task<Candidate> GetById(string id)
-        {
-            throw new NotImplementedException();
-        }
+        public async Task Add(Candidate candidate) => await _candidateRepository.Add(candidate);
 
-        public Task Remove(Candidate obj)
-        {
-            throw new NotImplementedException();
-        }
+        public Task<List<Candidate>> GetAll() => _candidateRepository.GetAll();
 
-        public Task Update(Candidate obj)
-        {
-            throw new NotImplementedException();
-        }
+        public Task<Candidate> GetById(Guid id) => _candidateRepository.GetById(id);
+
+        public async Task Remove(Guid id) => await _candidateRepository.Remove(id);
+        
+        public Task Update(Candidate candidate) => _candidateRepository.Update(candidate);
     }
 }

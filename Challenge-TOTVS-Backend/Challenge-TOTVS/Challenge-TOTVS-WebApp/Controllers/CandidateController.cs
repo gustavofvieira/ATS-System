@@ -10,60 +10,56 @@ namespace Challenge.TOTVS.WebApp.Controllers
     [ApiController]
     public class CandidateController : ControllerBase
     {
+        private readonly ILogger<CandidateController> _logger;
         private readonly ICandidateService _candidateService;
 
-        public CandidateController(ICandidateService candidateService)
+        public CandidateController(ILogger<CandidateController> logger, ICandidateService candidateService)
         {
+            _logger = logger;
             _candidateService = candidateService;
         }
 
-
-        // GET: api/<CandidateController>
-        [HttpGet]
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
-
-        //Associar o arquivo ao collection Candidate
         [HttpPost("UploadCVFile")]
         public IActionResult UploadCVFile(IFormFile formFile)
         {
-            //_logger.LogInformation("UploadFile" + formFile.FileName);
+            _logger.LogInformation("UploadFile" + formFile.FileName);
+            _candidateService.UploadCVFile(formFile);
             return Ok(formFile.FileName);
         }
 
-        // GET api/<CandidateController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
+        [HttpGet("GetAll")]
+        public async Task<IActionResult> GetAll()
         {
-            return "value";
+            var candidates = await _candidateService.GetAll();
+            return Ok(candidates);
         }
 
-        //POST api/<CandidateController>
-        //[HttpPost]
-        //public void Post(Candidate candidate)
-        //{
+        [HttpGet("GetById")]
+        public async Task<IActionResult> GetById(Guid id)
+        {
+            var candidate = await _candidateService.GetById(id);
+            return Ok(candidate);
+        }
 
-        //}
-
-        // POST api/<CandidateController>
-        [HttpPost]
-        public async Task Post(Candidate candidate)
+        [HttpPost("Create")]
+        public async Task<IActionResult> Post(Candidate candidate)
         {
             await _candidateService.Add(candidate);
+            return Ok();
         }
 
-        // PUT api/<CandidateController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [HttpPut("Update")]
+        public async Task<IActionResult> Put(Candidate candidate)
         {
+            await _candidateService.Update(candidate);
+            return Ok();
         }
 
-        // DELETE api/<CandidateController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        [HttpDelete("Delete")]
+        public async Task<IActionResult> Delete(Guid id)
         {
+            await _candidateService.Remove(id);
+            return Ok();
         }
     }
 }

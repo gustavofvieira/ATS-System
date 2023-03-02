@@ -10,49 +10,53 @@ namespace Challenge.TOTVS.WebApp.Controllers
     [ApiController]
     public class JobVacancyController : ControllerBase
     {
+        private readonly ILogger<JobVacancyController> _logger;
         private readonly IJobVacancyService _jobVacancyService;
 
-        public JobVacancyController(IJobVacancyService jobVacancyService) => _jobVacancyService = jobVacancyService;
-        // GET: api/<VacancyController>
-        [HttpGet]
-        public IEnumerable<string> Get()
+        public JobVacancyController(ILogger<JobVacancyController> logger, IJobVacancyService jobVacancyService)
         {
-            return new string[] { "value1", "value2" };
+            _logger = logger;
+            _jobVacancyService = jobVacancyService;
         }
 
-        // GET api/<VacancyController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
-        }
-
-        [HttpGet]
-        [Route("getAllJobVacancy")]
+        [HttpGet("GetAll")]
         public async Task<IActionResult> GetAll()
         {
-
-            var totalOrders = await _jobVacancyService.GetAll();
-            return Ok(totalOrders);
+            _logger.LogInformation("[{Method}] - Started ", nameof(GetAll));
+            var jobApps = await _jobVacancyService.GetAll();
+            return Ok(jobApps);
         }
 
-        // POST api/<VacancyController>
-        [HttpPost]
-        public async Task Post(JobVacancy value)
+        [HttpGet("GetById")]
+        public async Task<IActionResult> GetById(Guid id)
         {
-            await _jobVacancyService.Add(value);
+            _logger.LogInformation("[{Method}] - Started ", nameof(GetById));
+            var jobApp = await _jobVacancyService.GetById(id);
+            return Ok(jobApp);
         }
 
-        // PUT api/<VacancyController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [HttpPost("Create")]
+        public async Task<IActionResult> Create(JobVacancy jobVacancy)
         {
+            _logger.LogInformation("[{Method}] - Started ", nameof(Create));
+            await _jobVacancyService.Add(jobVacancy);
+            return Ok();
         }
 
-        // DELETE api/<VacancyController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        [HttpPut("Update")]
+        public async Task<IActionResult> Update(JobVacancy jobVacancy)
         {
+            _logger.LogInformation("[{Method}] - Started ", nameof(Update));
+            await _jobVacancyService.Update(jobVacancy);
+            return Ok();
+        }
+
+        [HttpDelete("Delete")]
+        public async Task<IActionResult> Delete(Guid id)
+        {
+            _logger.LogInformation("[{Method}] - Started ", nameof(Delete));
+            await _jobVacancyService.Remove(id);
+            return Ok();
         }
     }
 }

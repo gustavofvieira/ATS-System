@@ -1,4 +1,5 @@
-﻿using MongoDB.Bson;
+﻿using Microsoft.AspNetCore.Http;
+using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 using System.Text.Json.Serialization;
 
@@ -7,9 +8,15 @@ namespace Challenge.TOTVS.Domain.Models
     public class Candidate
     {
         [BsonId]
-        [BsonRepresentation(BsonType.ObjectId)]
-        [JsonIgnore]
-        public string _id { get; set; } = default!;
+        public Guid CandidateId { get; set; } 
+
+        [BsonElement("Login")]
+        [JsonPropertyName("Login")]
+        public string Login { get; set; } = default!;
+
+        [BsonElement("Password")]
+        [JsonPropertyName("Senha")]
+        public string Password { get; set; } = default!;
 
         [BsonElement("Name")]
         [JsonPropertyName("Nome")]
@@ -18,5 +25,10 @@ namespace Challenge.TOTVS.Domain.Models
         [BsonElement("Birthday")]
         [JsonPropertyName("DataNascimento")]
         public DateTime Birthday { get; set; }
+
+        //[BsonElement("File")]
+        //public IFormFile File { get; set; }= default!;
+
+
     }
 }

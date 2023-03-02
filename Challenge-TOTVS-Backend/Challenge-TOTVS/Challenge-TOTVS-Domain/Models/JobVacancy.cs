@@ -7,9 +7,7 @@ namespace Challenge.TOTVS.Domain.Models
     public class JobVacancy
     {
         [BsonId]
-        [BsonRepresentation(BsonType.ObjectId)]
-        [JsonIgnore]
-        public string _id { get; set; } = default!;
+        public Guid JobVacancyId { get; set; }
 
         [BsonElement("Description")]
         [JsonPropertyName("Descricao")]
@@ -18,5 +16,6 @@ namespace Challenge.TOTVS.Domain.Models
         [BsonElement("StartDate")]
         [JsonPropertyName("DataInicial")]
         public DateTime StartDate { get; set; }
+
     }
 }

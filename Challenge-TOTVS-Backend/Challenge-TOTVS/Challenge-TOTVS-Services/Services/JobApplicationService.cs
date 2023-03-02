@@ -1,33 +1,25 @@
-﻿using Challenge.TOTVS.Domain.Interfaces.Services;
+﻿using Challenge.TOTVS.Domain.Interfaces.Repositories;
+using Challenge.TOTVS.Domain.Interfaces.Services;
 using Challenge.TOTVS.Domain.Models;
 
 namespace Challenge.TOTVS.Services.Services
 {
     public class JobApplicationService : IJobApplicationService
     {
-        public Task Add(JobApplication obj)
-        {
-            throw new NotImplementedException();
-        }
 
-        public Task<IEnumerable<JobApplication>> GetAll()
-        {
-            throw new NotImplementedException();
-        }
+        private readonly IJobApplicationRepository _jobApplicationRepository;
 
-        public Task<JobApplication> GetById(string id)
-        {
-            throw new NotImplementedException();
-        }
+        public JobApplicationService(IJobApplicationRepository jobApplicationRepository) =>
+        _jobApplicationRepository = jobApplicationRepository;
 
-        public Task Remove(JobApplication obj)
-        {
-            throw new NotImplementedException();
-        }
+        public async Task Add(JobApplication jobApplication) => await _jobApplicationRepository.Add(jobApplication);
 
-        public Task Update(JobApplication obj)
-        {
-            throw new NotImplementedException();
-        }
+        public async Task<List<JobApplication>> GetAll() => await _jobApplicationRepository.GetAll();
+
+        public async Task<JobApplication> GetById(Guid id) => await _jobApplicationRepository.GetById(id);
+
+        public async Task Remove(Guid id) => await _jobApplicationRepository.Remove(id);
+
+        public async Task Update(JobApplication jobApplication) => await _jobApplicationRepository.Update(jobApplication);
     }
 }

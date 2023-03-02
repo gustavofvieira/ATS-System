@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Challenge.TOTVS.Domain.Interfaces.Services;
+using Challenge.TOTVS.Domain.Models;
+using Challenge.TOTVS.Services.Services;
+using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -8,44 +11,54 @@ namespace Challenge.TOTVS.WebApp.Controllers
     [ApiController]
     public class JobApplicationController : ControllerBase
     {
-        // GET: api/<JobApplicationController>
-        [HttpGet]
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
+        private readonly ILogger<JobApplicationController> _logger;
+        private readonly IJobApplicationService _jobApplicationService;
 
-        [HttpPost("UploadCVFile")]
-        public IActionResult UploadCVFile(IFormFile formFile)
+        public JobApplicationController(ILogger<JobApplicationController> logger, IJobApplicationService jobApplicationService)
         {
-            //_logger.LogInformation("UploadFile" + formFile.FileName);
-            return Ok(formFile.FileName);
+            _logger = logger;
+            _jobApplicationService = jobApplicationService;
         }
 
 
-        // GET api/<JobApplicationController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
+        [HttpGet("GetAll")]
+        public async Task<IActionResult> GetAll()
         {
-            return "value";
+            _logger.LogInformation("[{Method}] - Started ", nameof(GetAll));
+            var jobApps = await _jobApplicationService.GetAll();
+            return Ok(jobApps);
         }
 
-        // POST api/<JobApplicationController>
-        [HttpPost]
-        public void Post([FromBody] string value)
+        [HttpGet("GetById")]
+        public async Task<IActionResult> GetById(Guid id)
         {
+            _logger.LogInformation("[{Method}] - Started ", nameof(GetById));
+            var jobApp = await _jobApplicationService.GetById(id);
+            return Ok(jobApp);
         }
 
-        // PUT api/<JobApplicationController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [HttpPost("Create")]
+        public async Task<IActionResult> Create(JobApplication jobApplication)
         {
+            _logger.LogInformation("[{Method}] - Started ", nameof(Create));
+            await _jobApplicationService.Add(jobApplication);
+            return Ok();
         }
 
-        // DELETE api/<JobApplicationController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        [HttpPut("Update")]
+        public async Task<IActionResult> Update(JobApplication jobApplication)
         {
+            _logger.LogInformation("[{Method}] - Started ", nameof(Update));
+            await _jobApplicationService.Update(jobApplication);
+            return Ok();
+        }
+
+        [HttpDelete("Delete")]
+        public async Task<IActionResult> Delete(Guid id)
+        {
+            _logger.LogInformation("[{Method}] - Started ", nameof(Delete));
+            await _jobApplicationService.Remove(id);
+            return Ok();
         }
     }
 }
