@@ -15,7 +15,7 @@ namespace Challenge.TOTVS.Services.Services
             throw new NotImplementedException();
         }
 
-        public JobApplication GetById(int id)
+        public Task<JobApplication> GetById(string id)
         {
             throw new NotImplementedException();
         }

@@ -4,7 +4,7 @@ using Challenge.TOTVS.Domain.Models;
 
 namespace Challenge.TOTVS.Services.Services
 {
-    public class CandidateService : ICandidateService // BaseService<Candidate>, 
+    public class CandidateService : ICandidateService 
     {
         private readonly  ICandidateRepository _candidateRepository;
 
@@ -21,7 +21,7 @@ namespace Challenge.TOTVS.Services.Services
             throw new NotImplementedException();
         }
 
-        public Candidate GetById(int id)
+        public Task<Candidate> GetById(string id)
         {
             throw new NotImplementedException();
         }
@@ -35,29 +35,5 @@ namespace Challenge.TOTVS.Services.Services
         {
             throw new NotImplementedException();
         }
-        //public async Task Add(Candidate candidate)
-        //{
-        //    await _candidateRepository.Add(candidate);
-        //}
-
-        //public IEnumerable<Candidate> GetAll()
-        //{
-        //    throw new NotImplementedException();
-        //}
-
-        //public Candidate GetById(int id)
-        //{
-        //    throw new NotImplementedException();
-        //}
-
-        //public Task Remove(Candidate obj)
-        //{
-        //    throw new NotImplementedException();
-        //}
-
-        //public Task Update(Candidate obj)
-        //{
-        //    throw new NotImplementedException();
-        //}
     }
 }

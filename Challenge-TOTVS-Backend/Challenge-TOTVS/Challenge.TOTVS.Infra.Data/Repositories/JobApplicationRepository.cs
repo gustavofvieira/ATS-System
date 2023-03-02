@@ -19,7 +19,7 @@ namespace Challenge.TOTVS.Infra.Data.Repositories
             throw new NotImplementedException();
         }
 
-        public JobApplication GetById(int id)
+        public Task<JobApplication> GetById(string id)
         {
             throw new NotImplementedException();
         }

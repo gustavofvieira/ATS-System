@@ -19,10 +19,7 @@ namespace Challenge.TOTVS.Services.Services
 
         public async Task<IEnumerable<JobVacancy>> GetAll() => await _jobVacancyRepository.GetAll();
 
-        public JobVacancy GetById(int id)
-        {
-            throw new NotImplementedException();
-        }
+        public async Task<JobVacancy> GetById(string id) => await _jobVacancyRepository.GetById(id);
 
         public Task Remove(JobVacancy obj)
         {

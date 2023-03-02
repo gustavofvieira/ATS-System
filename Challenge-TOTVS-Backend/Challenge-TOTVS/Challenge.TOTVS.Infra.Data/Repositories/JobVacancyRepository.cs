@@ -20,7 +20,7 @@ namespace Challenge.TOTVS.Infra.Data.Repositories
         public async Task<IEnumerable<JobVacancy>> GetAll()  =>
             await _context.JobVacancy.AsQueryable().ToListAsync();
 
-        public JobVacancy GetById(int id)
+        public Task<JobVacancy> GetById(string id)
         {
             throw new NotImplementedException();
         }

@@ -1,6 +1,8 @@
 ﻿using Challenge.TOTVS.Domain.Interfaces.Repositories;
 using Challenge.TOTVS.Domain.Models;
 using Challenge.TOTVS.Infra.Data.Context;
+using MongoDB.Driver;
+using MongoDB.Driver.Linq;
 using System.Diagnostics.CodeAnalysis;
 
 namespace Challenge.TOTVS.Infra.Data.Repositories
@@ -22,10 +24,7 @@ namespace Challenge.TOTVS.Infra.Data.Repositories
             throw new NotImplementedException();
         }
 
-        public Candidate GetById(int id)
-        {
-            throw new NotImplementedException();
-        }
+        public async Task<Candidate> GetById(string id) => await _context.Candidate.AsQueryable().Where(c => c._id == id).FirstOrDefaultAsync();
 
         public Task Remove(Candidate obj)
         {

@@ -3,7 +3,7 @@
     public interface IBaseService<TEntity> where TEntity : class
     {
         Task Add(TEntity obj);
-        TEntity GetById(int id);
+        Task<TEntity> GetById(string id);
         Task<IEnumerable<TEntity>> GetAll();
         Task Update(TEntity obj);
         Task Remove(TEntity obj);
