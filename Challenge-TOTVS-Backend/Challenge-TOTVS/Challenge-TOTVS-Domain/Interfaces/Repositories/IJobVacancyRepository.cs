@@ -5,7 +5,6 @@ namespace Challenge.TOTVS.Domain.Interfaces.Repositories
 {
     public interface IJobVacancyRepository : IBaseRepository<JobVacancy>
     {
-        Task JobApplication(JobVacancy jobVacancy);
-        Task JobApplication2(Guid jobVacancyId, Guid candidateId);
+        Task JobApplication(Guid jobVacancyId, Guid candidateId);
     }
 }

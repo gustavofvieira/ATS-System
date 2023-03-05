@@ -75,7 +75,7 @@ export class JobApplicationComponent implements OnInit{
       this.jobVacancyService.CreateJobApplication(jobVacancy.jobVacancyId,jobVacancy.candidateId).subscribe((result) => {
         this.visibleForm = false;
         this.visibleTable = true;
-        alert('Job Vacancy created with success');
+        alert('Job application created with success');
         this.jobVacancyService.GetAll().subscribe((registers) => {
           this.jobVacancies = registers;
         });

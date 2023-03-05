@@ -20,6 +20,17 @@ export class CandidateComponent implements OnInit{
     return formatDate(dateStr, 'dd/MM/yyyy' ,this.locale);
 }
 
+// onFileChanged(event: any) {
+//   if (event.target.files.length > 0) {
+//     const file = event.target.files[0];
+//     this.labelImport.nativeElement.innerText = file.name;
+//     this.profileForm.patchValue({
+//       picture: file,
+//     });
+//   }
+// }
+
+
   form: any;
   titleForm: string | undefined;
   candidates: Candidate[] | undefined;

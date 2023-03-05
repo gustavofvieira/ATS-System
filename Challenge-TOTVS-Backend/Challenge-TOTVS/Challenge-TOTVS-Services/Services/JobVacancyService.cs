@@ -57,14 +57,7 @@ namespace Challenge.TOTVS.Services.Services
         public async Task JobApplication(Guid jobVacancyId, Guid candidateId)
         {
             _logger.LogInformation("[{Mehtod}] - Started, associate ID: {id}", nameof(JobApplication), candidateId);
-            //var jobApplication = await _jobVacancyRepository.GetById(jobVacancyId);
-
-            //if (jobApplication is null)
-            //    return;
-
-            //jobApplication.CandidateIds.Add(candidateId);
-            //await _jobVacancyRepository.JobApplication(jobApplication);
-            await _jobVacancyRepository.JobApplication2(jobVacancyId, candidateId);
+            await _jobVacancyRepository.JobApplication(jobVacancyId, candidateId);
             _logger.LogInformation("[{Mehtod}] - Finish, associate ID: {id}", nameof(JobApplication), candidateId);
         }
     }

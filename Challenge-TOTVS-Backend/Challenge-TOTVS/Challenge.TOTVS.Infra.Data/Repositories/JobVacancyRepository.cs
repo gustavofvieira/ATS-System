@@ -39,14 +39,7 @@ namespace Challenge.TOTVS.Infra.Data.Repositories
                 )
             );
 
-        public async Task JobApplication(JobVacancy jobVacancy) =>
-        await _context.JobVacancy.FindOneAndUpdateAsync(
-                c => c.JobVacancyId.Equals(jobVacancy.JobVacancyId),
-                Builders<JobVacancy>.Update.Combine(
-                    Builders<JobVacancy>.Update.Set(j => j.CandidateIds, jobVacancy.CandidateIds)
-                ));
-
-        public async Task JobApplication2(Guid jobVacancyId, Guid candidateId) =>
+        public async Task JobApplication(Guid jobVacancyId, Guid candidateId) =>
             await _context
             .JobVacancy
             .UpdateOneAsync(c => c.JobVacancyId == jobVacancyId,
