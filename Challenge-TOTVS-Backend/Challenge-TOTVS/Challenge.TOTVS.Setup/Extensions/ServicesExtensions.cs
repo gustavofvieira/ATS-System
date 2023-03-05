@@ -12,6 +12,7 @@ namespace Challenge.TOTVS.Setup.Extensions
         {
             return services
                 .AddScoped<IJobVacancyService, JobVacancyService>()
+                .AddScoped<IJobApplicationService, JobApplicationService>()
                 .AddScoped<ICandidateService, CandidateService>();
         }
     }

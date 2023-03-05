@@ -14,8 +14,8 @@
           <th>Login</th>
           <th>Password</th>
           <th>Birthday</th>
-          <th>Criado</th>
-          <th>Ações</th>
+          <th>Created At</th>
+          <th>Actions</th>
         </tr>
   
         <tr *ngFor="let candidate of candidates">
@@ -23,10 +23,10 @@
           <td>{{ candidate.login }}</td>
           <td>{{ candidate.password }}</td>
           <td>{{ FormatDateStr(candidate.birthday) }}</td>
-          <td>{{ FormatDateStr(candidate.createdAt) }}</td>
+          <td>{{ FormatDateTimeStr(candidate.createdAt) }}</td>
           <td>
             <button type="button" class="btn btn-sm btn-outline-info" (click)="ShowFormUpdate(candidate.candidateId)">
-              Save</button>| 
+              Update</button>| 
            <button type="button" class="btn btn-sm btn-outline-danger" (click)="ShowConfirmDelete(candidate.candidateId, candidate.login, conteudoModal)">
               Delete
             </button>
@@ -78,7 +78,27 @@
               formControlName="birthday"
             />
           </div>
-  
+
+          <!-- <div class="form-group">
+            <label>File</label>
+            <input
+              type="file"
+              class="form-control form-control-sm"
+              (change)="onFileChanged($event)"
+              formControlName="file"
+            />
+          </div> -->
+          <div class="form-group">
+            <label for="picture">File</label>
+            <div class="custom-file">
+              <input type="file" class="custom-file-input" id="customFile"
+                     (change)="onFileChanged($event)" accept=".jpg,.png,.gif,.pdf,.xls,.xlsx,.doc,.docx,.ppt,.pptx">
+              <label class="custom-file-label" #labelImport for="customFile">Choose file</label>
+            </div>
+            <div class="invalid-feedback" *ngIf="form.picture.touched && form.picture.invalid">
+              <div *ngIf="form.picture.errors.required">Picture is required.</div>
+            </div>
+          </div>
           <div class="container">
             <div class="row">
               <div>

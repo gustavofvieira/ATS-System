@@ -20,15 +20,21 @@ export class CandidateComponent implements OnInit{
     return formatDate(dateStr, 'dd/MM/yyyy' ,this.locale);
 }
 
-// onFileChanged(event: any) {
-//   if (event.target.files.length > 0) {
-//     const file = event.target.files[0];
-//     this.labelImport.nativeElement.innerText = file.name;
-//     this.profileForm.patchValue({
-//       picture: file,
-//     });
-//   }
-// }
+FormatDateTimeStr(dateStr :any): string{
+  return formatDate(dateStr, 'dd/MM/yyyy HH:mm:ss' ,this.locale);
+}
+
+onFileChanged(event: any) {
+  if (event.target.files.length > 0) {
+    const file = event.target.files[0];
+    // console.log("file: ", file)
+    // this.labelImport.nativeElement.innerText = file.name;
+    this.fileForm =file; 
+    this.form.patchValue({
+      file: file,
+    });
+  }
+}
 
 
   form: any;
@@ -40,19 +46,19 @@ export class CandidateComponent implements OnInit{
 
   visibleTable: boolean = true;
   visibleForm: boolean = false; 
+
+  fileForm: any;
   
   modalRef: BsModalRef | any;
 
-  
-
   ngOnInit(): void {
     this.candidateService.GetAll().subscribe((result) => {
-      console.log(result)
       this.candidates = result;
     });
   }
 
   ShowFormRegister(): void {
+    console.log("file register:",this.fileForm);
     this.visibleTable = false;
     this.visibleForm = true;
     this.titleForm = 'New candidate';
@@ -61,16 +67,15 @@ export class CandidateComponent implements OnInit{
       birthday: new FormControl(null),
       login: new FormControl(null),
       password: new FormControl(null),
+      filePath: new FormControl(null),
     });
   }
 
   ShowFormUpdate(candidateId :any): void {
     this.visibleTable = false;
     this.visibleForm = true;
-    console.log("entoru no metodo");
     this.candidateService.GetById(candidateId).subscribe((result) => {
       this.titleForm = `Update ${result.name} ${result.login}`;
-      console.log("entoru no getById: ", result.login);
       this.form = new FormGroup({
         candidateId: new FormControl(result.candidateId),
         birthday: new FormControl(result.birthday),
@@ -83,10 +88,12 @@ export class CandidateComponent implements OnInit{
   }
 
   SendForm(): void {
+
     const candidate: Candidate = this.form.value;
 
+    console.log("file register:",this.fileForm);
+    console.log("candidate :",candidate.filePath);
     if (candidate.candidateId != null) {
-      console.log("entrou no update");
       this.candidateService.UpdateCandidate(candidate).subscribe((resultado) => {
         this.visibleForm = false;
         this.visibleTable = true;
@@ -96,7 +103,6 @@ export class CandidateComponent implements OnInit{
         });
       });
     } else {
-      console.log("entrou no create");
       this.candidateService.CreateCandidate(candidate).subscribe((resultado) => {
         this.visibleForm = false;
         this.visibleTable = true;

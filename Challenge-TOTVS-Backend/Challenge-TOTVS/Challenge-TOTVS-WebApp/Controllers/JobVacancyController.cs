@@ -12,7 +12,6 @@ namespace Challenge.TOTVS.WebApp.Controllers
     {
         private readonly ILogger<JobVacancyController> _logger;
         private readonly IJobVacancyService _jobVacancyService;
-
         public JobVacancyController(ILogger<JobVacancyController> logger, IJobVacancyService jobVacancyService)
         {
             _logger = logger;
@@ -54,7 +53,7 @@ namespace Challenge.TOTVS.WebApp.Controllers
         [HttpPut("JobApplication")]
         public async Task<IActionResult> JobApplication(Guid jobVacancyId, Guid candidateId)
         {
-            _logger.LogInformation("[{Method}] - Started ", nameof(Update));
+            _logger.LogInformation("[{Method}] - Started ", nameof(JobApplication));
             await _jobVacancyService.JobApplication(jobVacancyId,candidateId);
             return Ok();
         }

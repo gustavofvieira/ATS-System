@@ -18,6 +18,10 @@ export class JobVacancyComponent implements OnInit{
     return formatDate(dateStr, 'dd/MM/yyyy' ,this.locale);
 }
 
+FormatDateTimeStr(dateStr :any): string{
+  return formatDate(dateStr, 'dd/MM/yyyy HH:mm:ss' ,this.locale);
+}
+
   constructor(@Inject(LOCALE_ID) public locale: string,private jobVacancyService: JobVacancyService,
     private modalService: BsModalService) {}
 

@@ -23,7 +23,7 @@
           <td>{{ vacancy.description }}</td>
           <td>{{ FormatDateStr(vacancy.startDate) }}</td>
           <td>{{ FormatDateStr(vacancy.expirateDate) }}</td>
-          <td>{{ FormatDateStr(vacancy.createdAt) }}</td>
+          <td>{{ FormatDateTimeStr(vacancy.createdAt) }}</td>
           <td>{{ vacancy.candidateIds }}</td>
           <td>
             <button type="button" class="btn btn-sm btn-outline-info" (click)="ShowFormUpdate(vacancy.jobVacancyId)">

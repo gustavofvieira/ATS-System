@@ -1,9 +1,10 @@
 import { Component, OnInit, TemplateRef, Inject, LOCALE_ID } from '@angular/core';
 import {FormGroup, FormControl} from '@angular/forms';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
-import { JobVacancy } from '../job-vacancy/job-vacancy';
-import { JobVacancyService } from '../job-vacancy/job-vacancy.service';
+import { JobApplicationService } from '../job-application/job-application.service';
 import {  formatDate } from '@angular/common';
+import { Candidate } from '../candidate/candidate';
+import { JobApplication } from './job-application';
 
 @Component({
   selector: 'app-job-application',
@@ -18,16 +19,17 @@ export class JobApplicationComponent implements OnInit{
     return formatDate(dateStr, 'dd/MM/yyyy' ,this.locale);
 }
 
-  constructor(@Inject(LOCALE_ID) public locale: string,private jobVacancyService: JobVacancyService,
+  constructor(@Inject(LOCALE_ID) public locale: string,private jobApplicationService: JobApplicationService,
     private modalService: BsModalService) {}
 
    
   form: any;
   titleForm: string | undefined;
-  jobVacancies: JobVacancy[] | undefined;
+  jobApplications: JobApplication[] | undefined;
+  candidates: Candidate[] | undefined;
   title: string | undefined;
   jobVacancyId: string | undefined;
-    candidateId: string | undefined;
+  candidateId: string | undefined;
 
   visibleTable: boolean = true;
   visibleForm: boolean = false; 
@@ -35,9 +37,9 @@ export class JobApplicationComponent implements OnInit{
   modalRef: BsModalRef | any;
 
   ngOnInit(): void {
-    this.jobVacancyService.GetAll().subscribe((result) => {
-      console.log(result)
-      this.jobVacancies = result;
+    this.jobApplicationService.GetAll().subscribe((result) => {
+      console.log("jobApp",result)
+      this.jobApplications = result;
     });
   }
  
@@ -52,56 +54,40 @@ export class JobApplicationComponent implements OnInit{
     });
   }
 
-  ShowFormUpdate(jobVacancyId :any): void {
-    this.visibleTable = false;
-    this.visibleForm = true;
-    this.jobVacancyService.GetById(jobVacancyId).subscribe((result) => {
-      this.titleForm = `Update ${result.title} ${result.createdAt}`;
-      this.form = new FormGroup({
-        jobVacancyId: new FormControl(result.jobVacancyId),
-        title: new FormControl(result.title),
-        description: new FormControl(result.description),
-        startDate: new FormControl(result.startDate),
-        expirateDate: new FormControl(result.expirateDate),
-        candidateIds: new FormControl(result.candidateIds),
-      });
-    });
-  }
+  // ShowFormUpdate(jobVacancyId :any): void {
+  //   this.visibleTable = false;
+  //   this.visibleForm = true;
+  //   this.jobApplicationService.GetById(jobVacancyId).subscribe((result) => {
+  //     this.titleForm = `Update ${result.title} ${result.createdAt}`;
+  //     this.form = new FormGroup({
+  //       jobVacancyId: new FormControl(result.jobVacancyId),
+  //       title: new FormControl(result.title),
+  //       description: new FormControl(result.description),
+  //       startDate: new FormControl(result.startDate),
+  //       expirateDate: new FormControl(result.expirateDate),
+  //       candidateIds: new FormControl(result.candidateIds),
+  //     });
+  //   });
+  // }
 
-  SendForm(): void {
-    const jobVacancy: JobVacancy = this.form.value;
+  // SendForm(): void {
+  //   const jobVacancy: JobVacancy = this.form.value;
 
   
-      this.jobVacancyService.CreateJobApplication(jobVacancy.jobVacancyId,jobVacancy.candidateId).subscribe((result) => {
-        this.visibleForm = false;
-        this.visibleTable = true;
-        alert('Job application created with success');
-        this.jobVacancyService.GetAll().subscribe((registers) => {
-          this.jobVacancies = registers;
-        });
-      });
+  //     this.jobApplicationService.CreateJobApplication(jobVacancy.jobVacancyId,jobVacancy.candidateId).subscribe((result) => {
+  //       this.visibleForm = false;
+  //       this.visibleTable = true;
+  //       alert('Job application created with success');
+  //       this.jobApplicationService.GetAll().subscribe((registers) => {
+  //         this.jobApplication = registers;
+  //       });
+  //     });
     
-  }
+  // }
 
   Back(): void {
     this.visibleTable = true;
     this.visibleForm = false;
-  }
-
-  ShowConfirmDelete(jobVacancyId: any, titleVacancy: any, contentModal: TemplateRef<any>): void {
-    this.modalRef = this.modalService.show(contentModal);
-    this.jobVacancyId = jobVacancyId;
-    this.title = titleVacancy;
-  }
-
-  DeleteJobVacancy(jobVacancyId: any){
-    this.jobVacancyService.DeleteJobVacancy(jobVacancyId).subscribe(resultado => {
-      this.modalRef.hide();
-      alert('Job Vacancy deleted with success');
-      this.jobVacancyService.GetAll().subscribe(registros => {
-        this.jobVacancies = registros;
-      });
-    });
   }
 }
 

@@ -5,6 +5,6 @@ namespace Challenge.TOTVS.Domain.Interfaces.Services
 {
     public interface ICandidateService : IBaseService<Candidate>
     {
-        void UploadCVFile(IFormFile formFile);
+        Task UploadCVFile(Guid id, IFormFile formFile);
     }
 }

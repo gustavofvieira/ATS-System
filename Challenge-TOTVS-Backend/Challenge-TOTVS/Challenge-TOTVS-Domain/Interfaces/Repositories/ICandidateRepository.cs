@@ -6,6 +6,6 @@ namespace Challenge.TOTVS.Domain.Interfaces.Repositories
 {
     public interface ICandidateRepository : IBaseRepository<Candidate>
     {
-        void UploadCVFile(IFormFile formFile);
+        Task UploadCVFile(Candidate candidate);
     }
 }

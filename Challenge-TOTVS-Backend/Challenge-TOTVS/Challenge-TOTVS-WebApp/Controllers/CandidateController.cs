@@ -20,11 +20,11 @@ namespace Challenge.TOTVS.WebApp.Controllers
         }
 
         [HttpPost("UploadCVFile")]
-        public IActionResult UploadCVFile(IFormFile formFile)
+        public async Task<ActionResult> UploadCVFile(Guid id, IFormFile formFile)
         {
+            await _candidateService.UploadCVFile(id,formFile);
             _logger.LogInformation("UploadFile" + formFile.FileName);
-            _candidateService.UploadCVFile(formFile);
-            return Ok(formFile.FileName);
+            return Ok();
         }
 
         [HttpGet("GetAll")]
