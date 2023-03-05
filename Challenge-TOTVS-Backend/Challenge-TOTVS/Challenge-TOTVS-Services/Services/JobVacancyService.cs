@@ -53,5 +53,19 @@ namespace Challenge.TOTVS.Services.Services
             await _jobVacancyRepository.Remove(id);
             _logger.LogInformation("[{Mehtod}] - Finish, with ID: {id}", nameof(Remove), id);
         }
+
+        public async Task JobApplication(Guid jobVacancyId, Guid candidateId)
+        {
+            _logger.LogInformation("[{Mehtod}] - Started, associate ID: {id}", nameof(JobApplication), candidateId);
+            //var jobApplication = await _jobVacancyRepository.GetById(jobVacancyId);
+
+            //if (jobApplication is null)
+            //    return;
+
+            //jobApplication.CandidateIds.Add(candidateId);
+            //await _jobVacancyRepository.JobApplication(jobApplication);
+            await _jobVacancyRepository.JobApplication2(jobVacancyId, candidateId);
+            _logger.LogInformation("[{Mehtod}] - Finish, associate ID: {id}", nameof(JobApplication), candidateId);
+        }
     }
 }

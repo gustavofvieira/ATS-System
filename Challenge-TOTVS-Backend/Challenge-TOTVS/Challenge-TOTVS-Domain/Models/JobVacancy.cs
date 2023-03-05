@@ -8,14 +8,13 @@ namespace Challenge.TOTVS.Domain.Models
     {
         [BsonId]
         public Guid JobVacancyId { get; set; }
-
-        [BsonElement("Description")]
-        [JsonPropertyName("Descricao")]
+        public string Title { get; set; } = default!;
         public string Description { get; set; } = default!;
-
-        [BsonElement("StartDate")]
-        [JsonPropertyName("DataInicial")]
         public DateTime StartDate { get; set; }
+        public DateTime ExpirateDate { get; set; }
+        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+        public DateTime UpdatedAt { get; set; }
+        public List<Guid> CandidateIds { get; set; } = default!;
 
     }
 }

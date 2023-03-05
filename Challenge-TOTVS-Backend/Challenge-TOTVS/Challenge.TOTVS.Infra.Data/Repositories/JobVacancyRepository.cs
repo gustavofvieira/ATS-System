@@ -24,12 +24,32 @@ namespace Challenge.TOTVS.Infra.Data.Repositories
 
         public async Task<JobVacancy> GetById(Guid id) => await _context.JobVacancy.AsQueryable().Where(c => c.JobVacancyId == id).FirstOrDefaultAsync();
 
-        public async Task Remove(Guid id) => await _context.JobVacancy.DeleteOneAsync(id.ToString());
+        public async Task Remove(Guid id) => await _context.JobVacancy.DeleteOneAsync(j => j.JobVacancyId.Equals(id));
 
         public async Task Update(JobVacancy jobVacancy) =>
+        await _context.JobVacancy.FindOneAndUpdateAsync(
+                c => c.JobVacancyId.Equals(jobVacancy.JobVacancyId),
+                Builders<JobVacancy>.Update.Combine(
+                    Builders<JobVacancy>.Update.Set(j => j.Title, jobVacancy.Title),
+                    Builders<JobVacancy>.Update.Set(j => j.Description, jobVacancy.Description),
+                    Builders<JobVacancy>.Update.Set(j => j.StartDate, jobVacancy.StartDate),
+                    Builders<JobVacancy>.Update.Set(j => j.ExpirateDate, jobVacancy.ExpirateDate),
+                    Builders<JobVacancy>.Update.Set(j => j.UpdatedAt, DateTime.UtcNow),
+                    Builders<JobVacancy>.Update.Set(j => j.CandidateIds, jobVacancy.CandidateIds)
+                )
+            );
+
+        public async Task JobApplication(JobVacancy jobVacancy) =>
+        await _context.JobVacancy.FindOneAndUpdateAsync(
+                c => c.JobVacancyId.Equals(jobVacancy.JobVacancyId),
+                Builders<JobVacancy>.Update.Combine(
+                    Builders<JobVacancy>.Update.Set(j => j.CandidateIds, jobVacancy.CandidateIds)
+                ));
+
+        public async Task JobApplication2(Guid jobVacancyId, Guid candidateId) =>
             await _context
             .JobVacancy
-            .UpdateOneAsync(c => c.JobVacancyId == jobVacancy.JobVacancyId,
-                Builders<JobVacancy>.Update.Set(j => j, jobVacancy));
+            .UpdateOneAsync(c => c.JobVacancyId == jobVacancyId,
+                Builders<JobVacancy>.Update.AddToSet(j => j.CandidateIds, candidateId));
     }
 }

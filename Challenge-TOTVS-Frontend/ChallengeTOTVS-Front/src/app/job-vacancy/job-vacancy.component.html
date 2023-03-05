@@ -1,1 +1,115 @@
-<p>job-vacancy works!</p>
+<div class="container p-5" *ngIf="visibleTable">
+    <div class="border boder-light rounded p-5">
+      <div>
+        <button type="button" class="btn btn-sm btn-secondary" (click)="ShowFormRegister()">
+          New Job Vacancy
+        </button>
+      </div>
+  
+      <hr />
+  
+      <table class="table table-striped table-hover table-sm" *ngIf="jobVacancies">
+        <tr class="thead-light">
+          <th>Title</th>
+          <th>Description</th>
+          <th>Start Date</th>
+          <th>Expirate Date</th>
+          <th>created At</th>
+          <th>candidateIds</th>
+        </tr>
+  
+        <tr *ngFor="let vacancy of jobVacancies">
+           <td>{{ vacancy.title }}</td>
+          <td>{{ vacancy.description }}</td>
+          <td>{{ FormatDateStr(vacancy.startDate) }}</td>
+          <td>{{ FormatDateStr(vacancy.expirateDate) }}</td>
+          <td>{{ FormatDateStr(vacancy.createdAt) }}</td>
+          <td>{{ vacancy.candidateIds }}</td>
+          <td>
+            <button type="button" class="btn btn-sm btn-outline-info" (click)="ShowFormUpdate(vacancy.jobVacancyId)">
+              Update</button>| 
+           <button type="button" class="btn btn-sm btn-outline-danger" (click)="ShowConfirmDelete(vacancy.jobVacancyId, vacancy.title, conteudoModal)">
+              Delete
+            </button>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  
+  <div class="container p-5" *ngIf="visibleForm">
+    <div class="row">
+      <div class="col-6 border boder-light rounded p-5 shadow" *ngIf="form">
+        <h6>{{ titleForm }}</h6>
+        <hr />
+  
+        <form [formGroup]="form" (ngSubmit)="SendForm()">
+          <div class="form-group">
+            <label>Title</label>
+            <input
+              type="text"
+              class="form-control form-control-sm"
+              formControlName="title"
+            />
+          </div>
+  
+          <div class="form-group">
+            <label>Description</label>
+            <input
+              type="text"
+              class="form-control form-control-sm"
+              formControlName="description"
+            />
+          </div>
+  
+          <div class="form-group">
+            <label>Start Date</label>
+            <input
+              type="date"
+              class="form-control form-control-sm"
+              formControlName="startDate"
+            />
+          </div>
+  
+          <div class="form-group">
+            <label>Expirate Date</label>
+            <input
+              type="date"
+              class="form-control form-control-sm"
+              formControlName="expirateDate"
+            />
+          </div>
+  
+          <div class="container">
+            <div class="row">
+              <div>
+                <button type="submit" class="btn btn-sm btn-outline-secondary">
+                  Save
+                </button>
+              </div>
+              <div class="pl-1">
+                <button type="button" class="btn btn-sm btn-light" (click)="Back()">Back</button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  
+  <ng-template #conteudoModal>
+      <div class="modal-header">
+        <h4 class="modal-title pull-left">Confirm Delete</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Continue delete of {{title}}
+      </div>
+  
+      <div class="modal-footer">
+          <button type="button" class="btn btn-light" (click)="modalRef.hide()">No</button>
+          <button type="button" class="btn btn-outline-danger" (click)="DeleteJobVacancy(jobVacancyId)">Yes</button>
+      </div>
+    </ng-template>

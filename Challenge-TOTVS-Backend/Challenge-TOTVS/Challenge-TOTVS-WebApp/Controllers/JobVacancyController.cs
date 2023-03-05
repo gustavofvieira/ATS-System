@@ -51,6 +51,14 @@ namespace Challenge.TOTVS.WebApp.Controllers
             return Ok();
         }
 
+        [HttpPut("JobApplication")]
+        public async Task<IActionResult> JobApplication(Guid jobVacancyId, Guid candidateId)
+        {
+            _logger.LogInformation("[{Method}] - Started ", nameof(Update));
+            await _jobVacancyService.JobApplication(jobVacancyId,candidateId);
+            return Ok();
+        }
+
         [HttpDelete("Delete")]
         public async Task<IActionResult> Delete(Guid id)
         {

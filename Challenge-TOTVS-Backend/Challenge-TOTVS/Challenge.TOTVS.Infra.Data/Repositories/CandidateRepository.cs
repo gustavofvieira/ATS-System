@@ -25,11 +25,17 @@ namespace Challenge.TOTVS.Infra.Data.Repositories
 
         public async Task Remove(Guid id) => await _context.Candidate.DeleteOneAsync(c => c.CandidateId.Equals(id));
 
-        public async Task Update(Candidate candidate) => 
-            await _context
-            .Candidate
-            .UpdateOneAsync(c => c.CandidateId == candidate.CandidateId, 
-                Builders<Candidate>.Update.Set(c => c, candidate));
+        public async Task Update(Candidate candidate) =>
+        await _context.Candidate.FindOneAndUpdateAsync(
+                c => c.CandidateId.Equals(candidate.CandidateId),
+                Builders<Candidate>.Update.Combine(
+                    Builders<Candidate>.Update.Set(c => c.Login, candidate.Login),
+                    Builders<Candidate>.Update.Set(c => c.Password, candidate.Password),
+                    Builders<Candidate>.Update.Set(c => c.Name, candidate.Name),
+                    Builders<Candidate>.Update.Set(c => c.Birthday, candidate.Birthday),
+                    Builders<Candidate>.Update.Set(c => c.UpdatedAt, DateTime.UtcNow)
+                )
+            );
 
         public void UploadCVFile(IFormFile formFile)
         {
