@@ -6,5 +6,6 @@ export class Candidate {
     name: string | undefined;
     createdAt: Date | undefined;
     updateddAt: Date | undefined;
-    filePath: string | undefined; 
+    // formFile: File | undefined;
+    // filePath: string | undefined; 
 }

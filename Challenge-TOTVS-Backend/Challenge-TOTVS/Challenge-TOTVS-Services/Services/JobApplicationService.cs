@@ -19,6 +19,23 @@ namespace Challenge.TOTVS.Services.Services
             _candidateRepository = candidateRepository;
         }
 
+        public async Task<List<Candidate>> GetCandidatesByJobId(Guid jobId)
+        {
+            _logger.LogInformation("[{Mehtod}] - Started", nameof(GetCandidatesByJobId));
+            var candidates = new List<Candidate>();
+            var job = await _jobVacancyRepository.GetById(jobId);
+
+            foreach (var candidateId in job.CandidateIds)
+            {
+                var candidate = await _candidateRepository.GetById(candidateId);
+                candidates.Add(candidate);
+            }
+
+            _logger.LogInformation("[{Mehtod}] - Finish", nameof(GetCandidatesByJobId));
+
+            return candidates;
+        }
+
         public async Task<List<JobApplication>> JobApplications()
         {
             _logger.LogInformation("[{Mehtod}] - Started", nameof(JobApplications));
@@ -28,6 +45,7 @@ namespace Challenge.TOTVS.Services.Services
             foreach (var job in jobvacs)
             {
                 var jobApp = new JobApplication();
+                jobApp.JobVacancyId = job.JobVacancyId;
                 jobApp.Title = job.Title;
                 jobApp.Candidates = new List<Candidate>();
                 foreach (var candidateId in job.CandidateIds)

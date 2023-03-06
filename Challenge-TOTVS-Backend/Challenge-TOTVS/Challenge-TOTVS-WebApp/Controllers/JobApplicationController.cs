@@ -24,5 +24,13 @@ namespace Challenge.TOTVS.WebApp.Controllers
             var list = await _jobApplicationService.JobApplications();
             return Ok(list);
         }
+
+        [HttpGet("GetCandidatesByJobId")]
+        public async Task<IActionResult> GetCandidatesByJobId(Guid jobId)
+        {
+            _logger.LogInformation("[{Method}] - Started ", nameof(GetCandidatesByJobId));
+            var list = await _jobApplicationService.GetCandidatesByJobId(jobId);
+            return Ok(list);
+        }
     }
 }

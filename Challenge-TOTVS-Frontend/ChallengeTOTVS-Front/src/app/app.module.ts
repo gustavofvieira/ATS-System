@@ -7,8 +7,9 @@ import { CandidateComponent } from './components/candidate/candidate.component';
 import { HomeComponent } from './components/home/home.component';
 import { JobVacancyComponent } from './components/job-vacancy/job-vacancy.component';
 
-import { CandidateService } from './components/candidate/candidate.service';
-import { JobVacancyService } from './components/job-vacancy/job-vacancy.service';
+import { CandidateService } from './services/candidate/candidate.service';
+import { JobApplicationService } from './services/job-application/job-application.service';
+import { JobVacancyService } from './services/job-vacancy/job-vacancy.service';
 
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from "@angular/common/http";
@@ -16,16 +17,15 @@ import { ReactiveFormsModule } from "@angular/forms";
 
 import { ModalModule } from "ngx-bootstrap/modal";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { JobApplicationComponent } from './components/job-application/job-application.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
+    JobVacancyComponent,
     CandidateComponent,
     HomeComponent,
-    JobVacancyComponent,
-    JobApplicationComponent
+    
   ],
   imports: [
     BrowserModule,
@@ -36,7 +36,7 @@ import { JobApplicationComponent } from './components/job-application/job-applic
     ReactiveFormsModule,
     ModalModule.forRoot()
   ],
-  providers: [HttpClientModule,CandidateService, JobVacancyService],
+  providers: [HttpClientModule,CandidateService, JobVacancyService, JobApplicationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -25,7 +25,7 @@ namespace Challenge.TOTVS.Services.Services
             await using var stream = new FileStream(filePath, FileMode.CreateNew);
             await formFile.CopyToAsync(stream);
             var candidate = await _candidateRepository.GetById(id);
-            candidate.FilePath = filePath;
+            //candidate.FilePath = filePath;
             await _candidateRepository.UploadCVFile(candidate);
         }
 
@@ -40,6 +40,11 @@ namespace Challenge.TOTVS.Services.Services
         public async Task Add(Candidate candidate) 
         {
             _logger.LogInformation("[{Mehtod}] - Started", nameof(Add));
+            //var filePath = $@"c:\CVsUploads\{Guid.NewGuid().ToString().Replace("-", "")}-{candidate.FormFile.FileName}";
+            //ExistsPathCVsUploads();
+            //await using var stream = new FileStream(filePath, FileMode.CreateNew);
+            //await candidate.FormFile.CopyToAsync(stream);
+            //candidate.FilePath = filePath;
             await _candidateRepository.Add(candidate);
             _logger.LogInformation("[{Mehtod}] - Finish", nameof(Add));
         }

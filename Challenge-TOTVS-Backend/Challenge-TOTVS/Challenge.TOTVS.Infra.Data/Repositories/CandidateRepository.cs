@@ -33,7 +33,7 @@ namespace Challenge.TOTVS.Infra.Data.Repositories
                     Builders<Candidate>.Update.Set(c => c.Login, candidate.Login),
                     Builders<Candidate>.Update.Set(c => c.Password, candidate.Password),
                     Builders<Candidate>.Update.Set(c => c.Name, candidate.Name),
-                    Builders<Candidate>.Update.Set(c => c.FilePath, candidate.FilePath),
+                    //Builders<Candidate>.Update.Set(c => c.FilePath, candidate.FilePath),
                     Builders<Candidate>.Update.Set(c => c.Birthday, candidate.Birthday),
                     Builders<Candidate>.Update.Set(c => c.UpdatedAt, DateTime.UtcNow)
                 )
@@ -43,7 +43,8 @@ namespace Challenge.TOTVS.Infra.Data.Repositories
         await _context.Candidate.FindOneAndUpdateAsync(
                 c => c.CandidateId.Equals(candidate.CandidateId),
                 Builders<Candidate>.Update.Combine(
-                    Builders<Candidate>.Update.Set(c => c.FilePath, candidate.FilePath)
+                    //Builders<Candidate>.Update.Set(c => c.FilePath, candidate.FilePath)
+                    Builders<Candidate>.Update.Set(c => c.Login, candidate.Login)
                 )
             );
     }

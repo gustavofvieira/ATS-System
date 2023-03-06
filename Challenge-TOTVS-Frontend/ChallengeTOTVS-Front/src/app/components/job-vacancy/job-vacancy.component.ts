@@ -2,8 +2,10 @@ import { Component, OnInit, TemplateRef, Inject, LOCALE_ID } from '@angular/core
 import {FormGroup, FormControl} from '@angular/forms';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { JobVacancy } from './job-vacancy';
-import { JobVacancyService } from './job-vacancy.service';
+import { JobVacancyService } from 'src/app/services/job-vacancy/job-vacancy.service';
+import { JobApplicationService } from 'src/app/services/job-application/job-application.service';
 import {  formatDate } from '@angular/common';
+import { Candidate } from '../candidate/candidate';
 
 @Component({
   selector: 'app-job-vacancy',
@@ -22,7 +24,7 @@ FormatDateTimeStr(dateStr :any): string{
   return formatDate(dateStr, 'dd/MM/yyyy HH:mm:ss' ,this.locale);
 }
 
-  constructor(@Inject(LOCALE_ID) public locale: string,private jobVacancyService: JobVacancyService,
+  constructor(@Inject(LOCALE_ID) public locale: string,private jobVacancyService: JobVacancyService,private jobApplicationService: JobApplicationService,
     private modalService: BsModalService) {}
 
    
@@ -35,23 +37,34 @@ FormatDateTimeStr(dateStr :any): string{
     startDate: Date | undefined;
     expirateDate: Date | undefined;
     candidateIds: string[] | undefined;
-
+    candidates: Candidate[] | undefined;
   visibleTable: boolean = true;
   visibleForm: boolean = false; 
+  visibleCandidates: boolean =false;
   
   modalRef: BsModalRef | any;
 
   ngOnInit(): void {
     this.jobVacancyService.GetAll().subscribe((result) => {
-      console.log(result)
       this.jobVacancies = result;
     });
   }
  
+  ShowCandidates(jobVacancyId :any): void {
+    this.visibleTable = false;
+     this.visibleCandidates = true;
+    //  this.titleForm = `Update ${result.title} ${result.createdAt}`;
+     this.jobApplicationService.GetCandidatesByJobId(jobVacancyId).subscribe((result) => {
+       this.candidates = result;
+       console.log("candidates",this.candidates);
+     });
+    
+    }
 
   ShowFormRegister(): void {
     this.visibleTable = false;
     this.visibleForm = true;
+    this.visibleCandidates = false;
     this.titleForm = 'New Job Vacancy';
     this.form = new FormGroup({
       title: new FormControl(null),
@@ -65,6 +78,7 @@ FormatDateTimeStr(dateStr :any): string{
   ShowFormUpdate(jobVacancyId :any): void {
     this.visibleTable = false;
     this.visibleForm = true;
+    this.visibleCandidates = false;
     this.jobVacancyService.GetById(jobVacancyId).subscribe((result) => {
       this.titleForm = `Update ${result.title} ${result.createdAt}`;
       this.form = new FormGroup({
@@ -106,6 +120,7 @@ FormatDateTimeStr(dateStr :any): string{
   Back(): void {
     this.visibleTable = true;
     this.visibleForm = false;
+    this.visibleCandidates = false;
   }
 
   ShowConfirmDelete(jobVacancyId: any, titleVacancy: any, contentModal: TemplateRef<any>): void {

@@ -2,7 +2,7 @@ import { Component, OnInit, TemplateRef, Inject, LOCALE_ID  } from '@angular/cor
 import {FormGroup, FormControl} from '@angular/forms';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { Candidate } from './candidate';
-import { CandidateService } from './candidate.service';
+import { CandidateService } from 'src/app/services/candidate/candidate.service';
 import {  formatDate } from '@angular/common';
 
 @Component({
@@ -31,7 +31,7 @@ onFileChanged(event: any) {
     // this.labelImport.nativeElement.innerText = file.name;
     this.fileForm =file; 
     this.form.patchValue({
-      file: file,
+      formFile: file,
     });
   }
 }
@@ -67,7 +67,7 @@ onFileChanged(event: any) {
       birthday: new FormControl(null),
       login: new FormControl(null),
       password: new FormControl(null),
-      filePath: new FormControl(null),
+      // formFile: new FormControl(null),
     });
   }
 
@@ -92,7 +92,6 @@ onFileChanged(event: any) {
     const candidate: Candidate = this.form.value;
 
     console.log("file register:",this.fileForm);
-    console.log("candidate :",candidate.filePath);
     if (candidate.candidateId != null) {
       this.candidateService.UpdateCandidate(candidate).subscribe((resultado) => {
         this.visibleForm = false;

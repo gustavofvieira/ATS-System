@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { JobVacancy } from './job-vacancy';
+import { JobVacancy } from 'src/app/components/job-vacancy/job-vacancy';
 
 const httpOptions ={
   headers: new HttpHeaders({

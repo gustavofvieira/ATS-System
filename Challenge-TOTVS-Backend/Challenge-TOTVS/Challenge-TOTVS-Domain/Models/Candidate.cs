@@ -22,8 +22,9 @@ namespace Challenge.TOTVS.Domain.Models
 
         public DateTime UpdatedAt { get; set; }
 
-        public IFormFile File { get; set; } = default!;
-        public string FilePath { get; set; } = default!;
+        //public IFormFile FormFile { get; set; } = default!;
+
+        //public string FilePath { get; set; } = default!;
 
 
     }
