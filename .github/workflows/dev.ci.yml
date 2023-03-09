@@ -24,6 +24,7 @@ jobs:
       # run: dotnet restore --project ..\..\Challenge-TOTVS-Backend\Challenge-TOTVS\Challenge-TOTVS-WebApp
     - name: Build
       # run: dotnet build --no-restore
-      run: dotnet build ..\..\Challenge-TOTVS-Backend\Challenge-TOTVS\Challenge-TOTVS-WebApp.csproj
+      # run: dotnet build ..\..\Challenge-TOTVS-Backend\Challenge-TOTVS\Challenge-TOTVS-WebApp.csproj
+      run: dotnet build ..\..\Challenge-TOTVS-Backend\Challenge-TOTVS\Challenge-TOTVS.sln
     # - name: Test
       # run: dotnet test --no-build --verbosity normal
