@@ -28,6 +28,6 @@ jobs:
     - name: Build
       # run: dotnet build --no-restore
       # run: dotnet build ..\..\Challenge-TOTVS-Backend\Challenge-TOTVS\Challenge-TOTVS-WebApp.csproj
-      run: dotnet build --configuration Release --no-restore
+      run: dotnet build --configuration Release --no-restore ..\..\Challenge-TOTVS-Backend\Challenge-TOTVS\Challenge-TOTVS-WebApp.csproj
     # - name: Test
       # run: dotnet test --no-build --verbosity normal
