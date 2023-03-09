@@ -25,5 +25,5 @@ jobs:
     - name: Build
       # run: dotnet build --no-restore
       run: dotnet run  --project ..\..\Challenge-TOTVS-Backend\Challenge-TOTVS\Challenge-TOTVS-WebApp
-    - name: Test
+    # - name: Test
       # run: dotnet test --no-build --verbosity normal
