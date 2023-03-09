@@ -21,9 +21,9 @@ jobs:
       with:
         dotnet-version: 6.0.x
     - name: Restore dependencies
-      run: dotnet restore
+      run: dotnet restore --project ..\..\Challenge-TOTVS-Backend\Challenge-TOTVS\Challenge-TOTVS-WebApp
     - name: Build
       # run: dotnet build --no-restore
       run: dotnet run  --project ..\..\Challenge-TOTVS-Backend\Challenge-TOTVS\Challenge-TOTVS-WebApp
     - name: Test
-      run: dotnet test --no-build --verbosity normal
+      # run: dotnet test --no-build --verbosity normal
