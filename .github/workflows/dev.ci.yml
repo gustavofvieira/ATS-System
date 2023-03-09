@@ -21,4 +21,4 @@ jobs:
       with:
         dotnet-version: 6.0.x
     - name: Build
-        run: dotnet build --configuration Release --no-restore ..\..\Challenge-TOTVS-Backend\Challenge-TOTVS\Challenge-TOTVS.sln
+      run: dotnet build --configuration Release --no-restore ..\..\Challenge-TOTVS-Backend\Challenge-TOTVS\Challenge-TOTVS.sln
