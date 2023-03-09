@@ -23,7 +23,8 @@ jobs:
     # - name: Restore dependencies
     #   run: dotnet restore
     - name: Build
-      run: dotnet build --configuration Release --no-restore ..\..\Challenge-TOTVS-Backend\Challenge-TOTVS\Challenge-TOTVS-WebApp.csproj
+      # run: dotnet build --configuration Release --no-restore ..\..\Challenge-TOTVS-Backend\Challenge-TOTVS\Challenge-TOTVS-WebApp.csproj
+        run: dotnet build --configuration Release --no-restore ..\..\Challenge-TOTVS-Backend\Challenge-TOTVS\Challenge-TOTVS.sln
       # run: dotnet build --no-restore
     # - name: Test
     #   run: dotnet test --no-build --verbosity normal
