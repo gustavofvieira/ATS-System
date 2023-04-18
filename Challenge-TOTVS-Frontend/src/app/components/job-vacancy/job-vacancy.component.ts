@@ -106,7 +106,7 @@ FormatDateTimeStr(dateStr :any): string{
         });
       });
     } else {
-      this.jobVacancyService.CreateJobVacancy(jobVacancy).subscribe((result) => {
+      this.jobVacancyService.CreateJobVacancyAuth(jobVacancy).subscribe((result) => {
         this.visibleForm = false;
         this.visibleTable = true;
         alert('Job Vacancy created with success');

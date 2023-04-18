@@ -19,7 +19,7 @@ const httpOptions ={
   providedIn: 'root'
 })
 export class UserService {
-  url = 'https://localhost:7141/v1/user';
+  url = 'https://localhost:7149/v1/user';
  
   constructor(private http: HttpClient, private route: ActivatedRoute,private localStorageService: LocalStorageService) { }
 
