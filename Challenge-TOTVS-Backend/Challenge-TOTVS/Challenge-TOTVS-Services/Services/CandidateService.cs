@@ -3,7 +3,6 @@ using Challenge.TOTVS.Domain.Interfaces.Services;
 using Challenge.TOTVS.Domain.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
-using System.Text.Json.Serialization;
 
 namespace Challenge.TOTVS.Services.Services
 {
@@ -21,6 +20,7 @@ namespace Challenge.TOTVS.Services.Services
         public async Task UploadCVFile(Guid id, IFormFile formFile)
         {
             var filePath = $@"c:\CVsUploads\{Guid.NewGuid().ToString().Replace("-","")}-{formFile.FileName}";
+            var filePath2 = Directory.GetCurrentDirectory() + "\\Attachment";
             ExistsPathCVsUploads();
             await using var stream = new FileStream(filePath, FileMode.CreateNew);
             await formFile.CopyToAsync(stream);
