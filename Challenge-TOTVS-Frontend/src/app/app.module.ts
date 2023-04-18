@@ -7,6 +7,9 @@ import { CandidateComponent } from './components/candidate/candidate.component';
 import { HomeComponent } from './components/home/home.component';
 import { JobVacancyComponent } from './components/job-vacancy/job-vacancy.component';
 import { LoginComponent } from './components/user/login/login.component';
+import { RecoverPassComponent } from './components/user/recoverPassword/recover-pass.component';
+import { UpdatePasswordComponent } from './components/user/updatePassword/update-password.component';
+import { CreateUserComponent } from './components/user/create/create.component';
 
 
 import { CandidateService } from './services/candidate/candidate.service';
@@ -25,6 +28,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   declarations: [
     AppComponent,
     LoginComponent,
+    RecoverPassComponent,
+    UpdatePasswordComponent,
+    CreateUserComponent,
     JobVacancyComponent,
     CandidateComponent,
     HomeComponent,
