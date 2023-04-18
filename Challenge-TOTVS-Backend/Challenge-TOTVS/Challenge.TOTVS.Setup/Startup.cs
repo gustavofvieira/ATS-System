@@ -15,6 +15,7 @@ namespace Challenge.TOTVS.Setup
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddServices();
+            services.AddValidators();
             services.AddRepositories();
             services
                 .AddMongoClientConfiguration(Configuration)

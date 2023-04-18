@@ -1,4 +1,9 @@
 using Challenge.TOTVS.Setup;
+using System.Text;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using Challenge.TOTVS.Domain.Models.Auth;
+using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -6,12 +11,73 @@ var startup = new Startup(builder.Configuration);
 
 startup.ConfigureServices(builder.Services);
 
+builder.Services.AddCors();
+
+
+//Config AppSettings
+builder.Services.Configure<SettingsOptions>(
+    builder.Configuration.GetSection("SettingsOptions"));
+
+builder.Services.Configure<AuthSmtp>(
+    builder.Configuration.GetSection("AuthSmtp"));
+
+builder.Services.Configure<FrontService>(
+    builder.Configuration.GetSection("FrontService"));
+
+
+
+var key = Encoding.ASCII.GetBytes("6e7b2ce2952496d9a8968259e8c2a3d4");
+builder.Services.AddAuthentication(x =>
+{
+    x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+})
+.AddJwtBearer(x =>
+{
+    x.RequireHttpsMetadata = false;
+    x.SaveToken = true;
+    x.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
+    {
+        ValidateIssuerSigningKey = true,
+        IssuerSigningKey = new SymmetricSecurityKey(key),
+        ValidateIssuer = false,
+        ValidateAudience = false,
+    };
+});
 // Add services to the container.
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+
+builder.Services.AddSwaggerGen(c =>
+{
+    c.SwaggerDoc("v1", new OpenApiInfo { Title = "ATS API", Version = "v1" });
+
+    c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme()
+    {
+        Name = "Authorization",
+        Type = SecuritySchemeType.ApiKey,
+        Scheme = "Bearer",
+        BearerFormat = "JWT",
+        In = ParameterLocation.Header,
+        Description = "JWT Authorization header using the Bearer scheme.",
+    });
+    c.AddSecurityRequirement(new OpenApiSecurityRequirement
+                {
+                    {
+                          new OpenApiSecurityScheme
+                          {
+                              Reference = new OpenApiReference
+                              {
+                                  Type = ReferenceType.SecurityScheme,
+                                  Id = "Bearer"
+                              }
+                          },
+                         new string[] {}
+                    }
+                });
+});
 
 var app = builder.Build();
 
@@ -30,6 +96,8 @@ app.UseCors(x => x
                 .WithExposedHeaders("authorization"));
 
 app.UseHttpsRedirection();
+
+app.UseAuthentication();
 
 app.UseAuthorization();
 

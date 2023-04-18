@@ -1,19 +1,15 @@
-﻿using Challenge.TOTVS.Domain.Interfaces.Repositories;
-using Challenge.TOTVS.Domain.Interfaces.Services;
-using Challenge.TOTVS.Services.Services;
-using Microsoft.Extensions.Configuration;
+﻿using Challenge.TOTVS.Domain.Models;
+using Challenge.TOTVS.Domain.Validations;
+using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Challenge.TOTVS.Setup.Extensions
 {
-    public static class ServicesExtensions
+    public static class ValidatorsExtensions
     {
-        public static IServiceCollection AddServices(this IServiceCollection services)
+        public static IServiceCollection AddValidators(this IServiceCollection services)
         {
-            return services
-                .AddScoped<IJobVacancyService, JobVacancyService>()
-                .AddScoped<IJobApplicationService, JobApplicationService>()
-                .AddScoped<ICandidateService, CandidateService>();
+            return services.AddScoped<IValidator<User>, UserValidator>();
         }
     }
 }

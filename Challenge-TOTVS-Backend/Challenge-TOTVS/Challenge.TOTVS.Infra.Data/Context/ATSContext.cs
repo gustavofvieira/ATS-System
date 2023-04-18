@@ -1,4 +1,5 @@
 ﻿using Challenge.TOTVS.Domain.Models;
+using Challenge.TOTVS.Domain.Models.Auth;
 using MongoDB.Driver;
 
 namespace Challenge.TOTVS.Infra.Data.Context
@@ -11,6 +12,8 @@ namespace Challenge.TOTVS.Infra.Data.Context
 
         public IMongoCollection<JobVacancy> JobVacancy => Database.GetCollection<JobVacancy>("JobVacancy");
         public IMongoCollection<Candidate> Candidate => Database.GetCollection<Candidate>("Candidate");
+        public IMongoCollection<User> Users => Database.GetCollection<User>("Users");
+        public IMongoCollection<RecoverPassword> RecoverPasswords => Database.GetCollection<RecoverPassword>("RecoverPasswords");
 
     }
 }

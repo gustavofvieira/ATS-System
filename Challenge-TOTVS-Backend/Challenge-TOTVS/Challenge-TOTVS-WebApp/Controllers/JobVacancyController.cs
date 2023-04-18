@@ -1,5 +1,7 @@
-﻿using Challenge.TOTVS.Domain.Interfaces.Services;
+﻿using Challenge.TOTVS.Domain.Constants;
+using Challenge.TOTVS.Domain.Interfaces.Services;
 using Challenge.TOTVS.Domain.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -19,6 +21,7 @@ namespace Challenge.TOTVS.WebApp.Controllers
         }
 
         [HttpGet("GetAll")]
+        [Authorize(Roles = Roles.Adm)]
         public async Task<IActionResult> GetAll()
         {
             _logger.LogInformation("[{Method}] - Started ", nameof(GetAll));
@@ -27,6 +30,7 @@ namespace Challenge.TOTVS.WebApp.Controllers
         }
 
         [HttpGet("GetById")]
+        [Authorize(Roles = Roles.Adm)]
         public async Task<IActionResult> GetById(Guid id)
         {
             _logger.LogInformation("[{Method}] - Started ", nameof(GetById));
@@ -35,6 +39,7 @@ namespace Challenge.TOTVS.WebApp.Controllers
         }
 
         [HttpPost("Create")]
+        [Authorize(Roles = Roles.Adm)]
         public async Task<IActionResult> Create(JobVacancy jobVacancy)
         {
             _logger.LogInformation("[{Method}] - Started ", nameof(Create));
@@ -43,6 +48,7 @@ namespace Challenge.TOTVS.WebApp.Controllers
         }
 
         [HttpPut("Update")]
+        [Authorize(Roles = Roles.Adm)]
         public async Task<IActionResult> Update(JobVacancy jobVacancy)
         {
             _logger.LogInformation("[{Method}] - Started ", nameof(Update));
@@ -59,6 +65,7 @@ namespace Challenge.TOTVS.WebApp.Controllers
         }
 
         [HttpDelete("Delete")]
+        [Authorize(Roles = Roles.Adm)]
         public async Task<IActionResult> Delete(Guid id)
         {
             _logger.LogInformation("[{Method}] - Started ", nameof(Delete));
