@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Challenge.TOTVS.Domain.Constants;
+using Challenge.TOTVS.Domain.ViewModel;
+using Microsoft.AspNetCore.Http;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 using System.Text.Json.Serialization;
@@ -9,10 +11,7 @@ namespace Challenge.TOTVS.Domain.Models
     {
         [BsonId]
         public Guid CandidateId { get; set; } 
-
-        public string Login { get; set; } = default!;
-
-        public string Password { get; set; } = default!;
+        public Guid UserId { get; set; } 
 
         public string Name { get; set; } = default!;
 
@@ -26,6 +25,16 @@ namespace Challenge.TOTVS.Domain.Models
 
         //public string FilePath { get; set; } = default!;
 
+        public static explicit operator Candidate(CandidateVM candidateVM)
+        {
+            return new Candidate
+            {
+                UserId = candidateVM.UserId,
+                Name = candidateVM.Name,
+                Birthday = candidateVM.Birthday,
+
+            };
+        }
 
     }
 }

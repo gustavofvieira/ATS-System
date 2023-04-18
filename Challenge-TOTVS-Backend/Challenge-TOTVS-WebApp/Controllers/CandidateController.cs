@@ -1,5 +1,6 @@
 ﻿using Challenge.TOTVS.Domain.Interfaces.Services;
 using Challenge.TOTVS.Domain.Models;
+using Challenge.TOTVS.Domain.ViewModel;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -45,6 +46,13 @@ namespace Challenge.TOTVS.WebApp.Controllers
         public async Task<IActionResult> Post(Candidate candidate)
         {
             await _candidateService.Add(candidate);
+            return Ok();
+        }
+
+        [HttpPost("CreateCandidate")]
+        public async Task<IActionResult> Post(CandidateVM candidate)
+        {
+            await _candidateService.CreateCandidate(candidate);
             return Ok();
         }
 

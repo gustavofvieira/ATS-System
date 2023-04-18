@@ -1,6 +1,7 @@
 ﻿using Challenge.TOTVS.Domain.Interfaces.Repositories;
 using Challenge.TOTVS.Domain.Interfaces.Services;
 using Challenge.TOTVS.Domain.Models;
+using Challenge.TOTVS.Domain.ViewModel;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 
@@ -10,11 +11,13 @@ namespace Challenge.TOTVS.Services.Services
     {
         private readonly  ILogger<CandidateService> _logger;
         private readonly  ICandidateRepository _candidateRepository;
+        private readonly  IUserRepository _userRepository;
 
-        public CandidateService(ILogger<CandidateService> logger, ICandidateRepository candidateRepository)
+        public CandidateService(ILogger<CandidateService> logger, ICandidateRepository candidateRepository, IUserRepository userRepository)
         {
             _logger = logger;
             _candidateRepository = candidateRepository;
+            _userRepository = userRepository;
         }
 
         public async Task UploadCVFile(Guid id, IFormFile formFile)
@@ -77,6 +80,15 @@ namespace Challenge.TOTVS.Services.Services
             _logger.LogInformation("[{Mehtod}] - Started, with ID: {id}", nameof(Remove), id);
             await _candidateRepository.Remove(id);
             _logger.LogInformation("[{Mehtod}] - Finish, with ID: {id}", nameof(Remove), id);
+        }
+
+        public async Task CreateCandidate(CandidateVM candidateVM)
+        {
+            var user = (User)candidateVM;
+            var candidate = (Candidate)candidateVM;
+            await _userRepository.Add(user);
+            await _candidateRepository.Add(candidate);
+     
         }
     }
 }

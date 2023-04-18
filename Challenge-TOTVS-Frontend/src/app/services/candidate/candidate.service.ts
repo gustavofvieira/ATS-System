@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Candidate } from 'src/app/components/candidate/candidate';
+import { CandidateVM } from 'src/app/components/candidate/candidateVm';
 
 const httpOptions ={
   headers: new HttpHeaders({
@@ -33,6 +34,11 @@ export class CandidateService {
   UpdateCandidate(candidate: Candidate) : Observable<any>{
     const apiUrl = `${this.url}/Update`;
     return this.http.put<Candidate>(apiUrl, candidate, httpOptions)
+  }
+
+  CreateCandidateVM(candidateVm: CandidateVM) : Observable<any>{
+    const apiUrl = `${this.url}/CreateCandidate`;
+    return this.http.post<CandidateVM>(apiUrl, candidateVm, httpOptions)
   }
 
   DeleteCandidate(candidateId: string) : Observable<any>{
