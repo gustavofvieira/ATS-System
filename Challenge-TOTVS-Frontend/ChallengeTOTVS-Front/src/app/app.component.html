@@ -1,6 +1,25 @@
-<nav>
-  <a routerLink="/">Home</a><br/>
-  <a routerLink="/candidate">Candidates</a><br/>
-  <a routerLink="/jobVacancy">Job Vacancies</a><br/>
-</nav>
-<router-outlet></router-outlet>
+<head>
+  <title>ATS System</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-black.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css">
+</head>
+  
+  <div class="w3-bar w3-theme">
+    <button class="w3-bar-item w3-button testbtn w3-padding-16" routerLink="/">Home</button>
+    <button class="w3-bar-item w3-button testbtn w3-padding-16" routerLink="/candidate">Candidates</button>
+    <button class="w3-bar-item w3-button testbtn w3-padding-16" routerLink="/jobVacancy">Job Vacancies</button>
+  </div>
+
+  <router-outlet></router-outlet>
+
+  <footer class="w3-container w3-theme-dark w3-padding-16">
+    <div style="position:relative;bottom:55px;" class="w3-tooltip w3-right">
+      <span class="w3-text w3-theme-light w3-padding">Go To Top</span>    
+      <a class="w3-text-white" href="#myHeader"><span class="w3-xlarge">
+      <i class="fa fa-chevron-circle-up"></i></span></a>
+    </div>
+    <p>Developed by Ukusa Tech with template W3 CSS</p>
+  </footer>
